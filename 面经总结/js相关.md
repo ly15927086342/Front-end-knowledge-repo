@@ -137,7 +137,7 @@ then:2
 then:3
 4
 ```
-`解析`
+`解析`  
 执行promise(1)同步部分，并把resolve(1)推入微任务队列，阻塞async函数中后面的代码  
 执行promise(5)同步部分，并把resolve(5)推入微任务队列，同步代码执行完毕  
 遍历微任务队列，执行resolve(1)，async函数中剩余同步代码开始执行，执行promise(2)同步代码，并把resolve(2)推入微任务队列，执行promise(3)同步代码，并把resolve(3)推入微任务队列  
