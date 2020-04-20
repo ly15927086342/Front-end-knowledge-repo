@@ -177,6 +177,7 @@ then:3
 前者是方法，后者是实例化  
   
 26. toString()和valueOf()区别  
+
 |method|Number|String|Boolean|Date|Array|Object|function|  
 |:--|:--|:--|:--|:--|:--|:--|:--|  
 |toString|"123"|一致|"false"|打印日期|"1,2,3"|[object Object]|源代码字符串|  
