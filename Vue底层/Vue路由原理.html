@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue路由</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+</body>
+<script type="text/javascript">
+	const NotFound = { template: '<p>Page not found</p>' }
+	const Home = { template: '<p>home page</p>' }
+	const About = { template: '<p>about page</p>' }
+
+	const routes = {
+		'/': Home,
+		'/about': About
+	}
+
+	new Vue({
+		el: '#app',
+		data: {
+			currentRoute: window.location.pathname
+		},
+		computed: {
+			ViewComponent () {
+				return routes[this.currentRoute] || NotFound
+			}
+		},
+		render (h) { return h(this.ViewComponent) }
+	})
+</script>
+</html>

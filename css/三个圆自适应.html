@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<style type="text/css">
+	.father {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.pad {
+		width: 33.33%;
+		border-radius: 50%;
+		padding-top: 33.33%;
+		background-color: yellow;
+	}
+	.aft{
+		width: 33.33%;
+		border-radius: 50%;
+		background-color: green;
+	}
+	.aft:after{
+		content: '';
+		display: block;
+		margin-top: 100%;
+	}
+	.vww{
+		width: 33.33vw;
+		border-radius: 50%;
+		height: 33.33vw;
+		background-color: red;
+	}
+</style>
+</head>
+<body>
+	padding/margin用百分比时，是相对父元素的宽度。
+	<div class="father">
+		<div class="pad"></div>
+		<div class="pad"></div>
+		<div class="pad"></div>
+	</div>
+	<div class="father">
+		<div class="aft"></div>
+		<div class="aft"></div>
+		<div class="aft"></div>
+	</div>
+	<div class="father">
+		<div class="vww"></div>
+		<div class="vww"></div>
+		<div class="vww"></div>
+	</div>
+</body>
+
+</html>

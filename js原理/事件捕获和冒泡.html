@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>事件捕获和冒泡学习</title>
+	<style type="text/css">
+
+</style>
+</head>
+<body>
+	<div>在ul上绑定事件监听，stopPropagation阻止捕获和冒泡</div>
+	<div>父元素可以获取触发事件的是哪个子元素，通过e.target的信息可知</div>
+	<ul id="father_1">
+		<li id="son_1">阻止冒泡</li>
+		<li id="son_2" key="son_2">sdf</li>
+		<li id="son_3" key="son_3">sdf</li>
+		<li id="son_4" key="son_4">sdf</li>
+	</ul>
+	<ul id="father_2">
+		<li id="son_5">阻止捕获</li>
+		<li>sdf</li>
+		<li>sdf</li>
+	</ul>
+</body>
+<script type="text/javascript">
+	// 冒泡机制
+	document.querySelector('#father_1').addEventListener('click',(e)=>{
+		console.log(e.target.attributes.key.nodeValue)
+	},false)
+
+	document.querySelector('#son_1').addEventListener('click',(e)=>{
+		e.stopPropagation();
+	},false)
+
+	// 捕获机制
+	document.querySelector('#father_2').addEventListener('click',(e)=>{
+		console.log('father_2')
+		e.stopPropagation();
+	},true)
+
+	document.querySelector('#son_5').addEventListener('click',(e)=>{
+		console.log(e)
+	},true)
+</script>
+</html>
