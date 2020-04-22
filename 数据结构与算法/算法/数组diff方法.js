@@ -1,24 +1,6 @@
-// 重写flat
-
-Array.prototype.flat = function(depth) {
-	let num = depth === undefined ? 1 : depth;
-	if (!Number(num) || Number(num) < 0) {
-		return this;
-	}
-	let arr = [];
-	this.forEach(item => {
-		if (Array.isArray(item)) {
-			arr = arr.concat(item.flat(num-1));
-		} else {
-			arr.push(item);
-		}
-	});
-	return arr;
-};
-
 /** 
- * 第2道题
- * 
+ * author: Yu Li
+ * date: 2020/04/21
  * 写一个 diff 方法，用于比较两个数组，返回两数组中不同的部分，
  * 要求考虑算法性能，使用 es2015 / es2016 语法，不能使用第三方类库；
  *
@@ -47,13 +29,3 @@ Array.prototype.flat = function(depth) {
  	})
  	return res
  }
-
- // function diff(arr1,arr2){
- // 	var ar1 = arr1.filter(function(value) {  
- // 		return arr2.indexOf(value) ===-1;  
- // 	});  
- // 	var ar2 = arr2.filter(function(value) {  
- // 		return arr1.indexOf(value) ===-1;  
- // 	});
- // 	return ar1.concat(ar2)
- // }

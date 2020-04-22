@@ -1,6 +1,8 @@
 /* writed by Li Yu
 ** 题目：求一个数的开根号
 ** 原理：利用二分法查找，直至左右两边的差值小于精度要求
+** 分治+递归
+** 递归上属于求解方法是递归的
 */
 
 function doIt(left,right,target){
