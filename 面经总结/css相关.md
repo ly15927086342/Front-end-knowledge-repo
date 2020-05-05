@@ -90,4 +90,14 @@ align-content：轴线对齐
 flex-wrap  
 flex-flow:<direction>|<warp>
 
-12. 
+12. css变量  
+用法：  
+```css
+:root{
+	--someProp: value;
+}
+.aClass{
+	color: var(--someProp);
+}
+```
+作用：替代sass/less中变量的方案，以--开头，使用通过var()

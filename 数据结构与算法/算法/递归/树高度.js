@@ -22,6 +22,9 @@ class Tree{
 		tree.child[0].child[0].child.push(new Tree(7))
 		return tree
 	}
+	/*
+	** 打印树节点，因为树本身是递归结构，所以需要用递归的方法打印
+	*/
 	static printHere(node){
 		console.log(node.value)
 		if(node.child == null){
@@ -32,6 +35,10 @@ class Tree{
 			this.printHere(nodeChild)
 		}
 	}
+	/*
+	** 递归获取树的高度
+	** 比较子树的高度，返回高度+1(节点本身)
+	*/
 	static getHeight(node){
 		if(node.child == null){
 			return 1
