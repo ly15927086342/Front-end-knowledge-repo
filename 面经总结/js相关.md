@@ -6,7 +6,7 @@ date: _2020/04/17_
 ## 题目  
   
 1. typeof、instanceof、isPropertyof区别  
-详见<a href="/js原理/typeof_instanceof_isprototypeof.js" target="_blank">/js原理/typeof_instanceof_isprototypeof.js</a>  
+详见[/js原理/typeof_instanceof_isprototypeof.js](/js原理/typeof_instanceof_isprototypeof.js){:target="_blank" rel="noopener"}  
   
 2. === 表示恒等，不会类型转换  
 由于js是弱语言，表达式运算符会导致类型转换，如  
