@@ -92,9 +92,9 @@ function promise(id){
 	return p;
 }
 async function asyncFun(){
-	let p1 = await promise(1);
+	await promise(1);
 	promise(2);
-	let p2 = await promise(3);
+	await promise(3);
 	console.log(4);
 }
 // asyncFun函数等价于以下promiseFun函数
