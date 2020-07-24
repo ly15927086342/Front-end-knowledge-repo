@@ -112,8 +112,8 @@ function* Gen(){
 	yield promise(1)
 	promise(2)
 	yield promise(3)
-	promise(4)
-	return 6
+	console.log(4)
+	return
 }
 asyncFun();
 <!-- promiseFun(); -->
@@ -121,7 +121,7 @@ asyncFun();
 g.next().value.then(res=>{// 执行promise(1);
 	return g.next().value
 }).then(res2=>{// 执行promise(2);promise(3);
-	 g.next();// 执行promise(4);
+	 g.next();// 执行console.log(4);
 });  -->
 promise(5);
 ```
