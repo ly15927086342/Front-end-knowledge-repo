@@ -6,7 +6,7 @@ date: _2020/04/17_
 ## 题目  
   
 1. typeof、instanceof、isPropertyof区别  
-详见[/js原理/typeof_instanceof_isprototypeof.js](/js原理/typeof_instanceof_isprototypeof.js){:target="_blank" rel="noopener"}  
+详见[/js原理/typeof_instanceof_isprototypeof.js](/js原理/typeof_instanceof_isprototypeof.js)  
   
 2. === 表示恒等，不会类型转换  
 由于js是弱语言，表达式运算符会导致类型转换，如  
@@ -14,7 +14,7 @@ true == 1 == '1'
 true !== 1  
   
 3. 查询自有属性的方法  
-详见<a href="/js/原型链的属性遍历.js" target="_blank">/js/原型链的属性遍历.js</a>  
+详见<a href="/js原理/原型链的属性遍历.js">/js原理/原型链的属性遍历.js</a>  
   
 4. 数据类型包括：基本类型和引用类型  
 基本类型包括：null、undefined、boolean、string、symbol、number、object  
@@ -50,14 +50,14 @@ Math.max.apply(null,Attay)
   
 8. this指向  
 new调用 > 显示调用 > 隐式调用 > 默认调用  
-详见<a href="/js原理/this理解.js" target="_blank">/js原理/this理解.js</a>  
+详见<a href="/js原理/this理解.js">/js原理/this理解.js</a>  
   
 9. 原生对象和宿主对象  
 原生对象：引用类型=》Array\Date\RegExp  
 宿主对象：宿主环境规定的对象，如Document\Location\Navigator  
   
 10. 深浅拷贝  
-详见<a href="/js原理/js对象的深浅拷贝(克隆).js" target="_blank">/js原理/js对象的深浅拷贝(克隆).js</a>  
+详见<a href="/js原理/js对象的深浅拷贝(克隆).js">/js原理/js对象的深浅拷贝(克隆).js</a>  
   
 11. IIFE(立即执行函数表达式)  
 写法(function(...arg){})(arg1,..,argn)  
@@ -150,7 +150,7 @@ then:3
 （2）更好的语义  
 （3）更广的适用性  
 （4）返回值是 Promise  
-详见<a href="https://es6.ruanyifeng.com/#docs/async" target="_blank">async 函数</a>
+详见<a href="https://es6.ruanyifeng.com/#docs/async">async 函数</a>
 
 `async比promise好在哪里`
 （1）代码简介
@@ -173,7 +173,7 @@ then:3
 把属于内部属性的方法从Object对象提取出，set如果不传receiver，不会触发defineProperty拦截  
   
 23. 观察者模式实现  
-详见<a href="/js原理/观察者模式.js" target="_blank">/js原理/观察者模式.js</a>  
+详见<a href="/js原理/观察者模式.js">/js原理/观察者模式.js</a>  
   
 24. 判断变量是数组  
 1.arr instanceof Array  
@@ -213,13 +213,13 @@ CommonJS require的变量是缓存，不能修改，而ES6模块变量值是东�
   
 30. 排序方法  
 冒泡、选择、插入、快排、归并、哈希  
-详见<a href="/数据结构与算法/算法/排序" target="_blank">/数据结构与算法/算法/排序</a>  
+详见<a href="/数据结构与算法/算法/排序">/数据结构与算法/算法/排序</a>  
   
 31. 对象属性不可修改  
 Object.freeze->Object.seal->preventExtensions->writable\configurable  
   
 32. Event Loop 事件循环  
-<a href="https://juejin.im/post/5c947bca5188257de704121d" target="_blank">参考这篇博文，讲的非常清楚</a>
+<a href="https://juejin.im/post/5c947bca5188257de704121d">参考这篇博文，讲的非常清楚</a>
 
 理解：  
 浏览器的JS运行只有一个主线程，主线程中有个执行栈，按顺序执行  
