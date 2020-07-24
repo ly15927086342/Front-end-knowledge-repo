@@ -80,7 +80,7 @@ grid align-self:center; justify-self:center;
 
 10. 三个圆形水平自适应  
 难度在高度自适应  
-三种方法详见[/css/三个圆自适应.html](/css/三个圆自适应.html)
+三种方法详见[/css/三个圆自适应.html](/css/三个圆自适应.html){:target="_blank"}
 
 11. flex的用法  
 flex-direction  

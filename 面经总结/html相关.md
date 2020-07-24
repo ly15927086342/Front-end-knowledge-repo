@@ -10,7 +10,7 @@ date: _2020/04/17_
 事件捕获是由外到内    
 W3C标准规定，domNode.addEventListener(event,fn,usecapture)//事件，回调，是否开启捕获，true为捕获，false为冒泡    
 IE标准规定，attachEvent    
-详见[/css/事件捕获和冒泡.html](/css/事件捕获和冒泡.html)    
+详见[/css/事件捕获和冒泡.html](/css/事件捕获和冒泡.html){:target="_blank"}    
     
 2. 阻止冒泡的方法    
 W3C e.stopPropagation()//此方法为阻止事件传递，包括捕获和冒泡    
