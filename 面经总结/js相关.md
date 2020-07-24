@@ -99,11 +99,12 @@ async function asyncFun(){
 }
 // asyncFun函数等价于以下promiseFun函数
 function promiseFun(){
-	let p1 = promise(1);
-	p1.then((res)=>{
+	promise(1)
+	.then((res)=>{
 		promise(2);
-		return promise(3);
-	}).then((res)=>{
+		promise(3);
+	})
+	.then((res)=>{
 		console.log(4)
 	})
 }
@@ -150,6 +151,12 @@ then:3
 （3）更广的适用性  
 （4）返回值是 Promise  
 详见[async 函数](https://es6.ruanyifeng.com/#docs/async)  
+`async比promise好在哪里`
+（1）代码简介
+（2）错误处理（promise外部不能自定义try/catch，async可以）
+（3）条件语句（async可在外部使用）
+（4）中间值（promise需要链式调用then）
+（5）错误栈（promise无法定位错误位置）
   
 18. Object.defineProperty(obj,key,{})，参数有enumerable\configurable\writable\set\get  
   
@@ -266,5 +273,6 @@ setTimeout---200
 promise5
 inner-setTimeout---0
 ```
+then()函数内部不管是同步还是异步代码，都是在一次事件循环内执行，即同步代码直接执行，异步代码推入任务队列。这和async的await效果不太一样，await后面的函数中，同步代码会先执行，然后在then函数中的同步代码会和await后面的同步代码先执行，异步代码依次推入任务队列。
 
 33. 
