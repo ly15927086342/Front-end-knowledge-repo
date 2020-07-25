@@ -18,10 +18,11 @@ const deepClone = obj => {
 	Object.keys(clone).forEach(key=>(
 		clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
 	);
-	// return Array.isArray(obj) && obj.length	? 
-	// (clone.length = obj.length) && Array.from(clone) : // obj是数组且非空，clone对象转数组
-	// Array.isArray(obj) ? Array.from(obj) : clone; // obj是空数组，直接返回，否则返回clone对象
-	return Array.isArray(obj) ? (clone.length = obj.length) && Array.from(clone) : clone;
+	if(Array.isArray(obj)){
+		clone.length = obj.length
+		return Array.from(clone)
+	}
+	return clone
 }
 //tip: Array.from()如果是对象转数组，需要有length属性
 
@@ -31,5 +32,6 @@ const deepCloneArr = obj => {
 	Object.keys(clone).forEach(key=>(
 		clone[key] = typeof obj[key] === 'object' ? deepCloneArr(obj[key]) : obj[key])
 	);
-	return (clone.length = obj.length) && Array.from(clone);
+	clone.length = obj.length
+	return Array.from(clone);
 }
