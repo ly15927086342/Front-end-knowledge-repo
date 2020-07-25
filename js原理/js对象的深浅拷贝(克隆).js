@@ -12,7 +12,8 @@ var obj2 = JSON.parse(JSON.stringify(obj1))
 
 // 2. 递归
 const deepClone = obj => {
-	if(obj === null) return null; // Object.assign({},null)会转化为{}，明显不对，此处不考虑undefined？
+	if(obj === null) return null; // Object.assign({},null)会转化为{}
+	if(obj === undefined) return undefined; // Object.assign({},undefined)会转化为{}
 	let clone = Object.assign({},obj); // 不管是不是数组，都转对象
 	Object.keys(clone).forEach(key=>(
 		clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
