@@ -7,6 +7,7 @@ typeof undefined // 'undefined'
 typeof Symbol // 'function'
 typeof 'ddd' // 'string'
 typeof {} // 'object'
+typeof function(){} // 'function'
 typeof null // 'object'，因为null二进制全是0，而只要前三位是0就判断为object
 
 
@@ -70,10 +71,10 @@ A.prototype.isPrototypeOf(b) // false
 B.isPrototypeOf(b) // false
 B.prototype.isPrototypeOf(b) // true
 
-// 我们探讨以下a的原型链
+// 我们探讨一下a的原型链
 
 a.__proto__ === A.prototype // 指向A函数prototype属性，是一个包含contructor和__proto__的对象
 a.__proto__.__proto__ === B // 指向B函数，原本指向对象的原型Object，强行改为了B函数
-a.__proto__.__proto__.__proto__ === B.__proto__ // 指向B函数的原型，也是函数的原型Function
-a.__proto__.__proto__.__proto__.__proto__ // 指向对象的原型，函数继承了对象Object
+a.__proto__.__proto__.__proto__ === B.__proto__ === Function.__proto__ === Function.prototype // 指向B函数的原型，也是函数Function的原型
+a.__proto__.__proto__.__proto__.__proto__ === Object.prototype // 指向对象的原型，函数继承了对象Object
 a.__proto__.__proto__.__proto__.__proto__.__proto__ // null
