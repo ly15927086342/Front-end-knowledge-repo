@@ -219,7 +219,8 @@ CommonJS require的变量是缓存，不能修改，而ES6模块变量值是东�
 Object.freeze->Object.seal->preventExtensions->writable\configurable  
   
 32. Event Loop 事件循环  
-<a href="https://juejin.im/post/5c947bca5188257de704121d">参考这篇博文，讲的非常清楚</a>
+<a href="https://juejin.im/post/5c947bca5188257de704121d">参考这篇博文，讲的非常清楚</a>  
+![./event_loop.svg](./event_loop.svg)
 
 理解：  
 浏览器的JS运行只有一个主线程，主线程中有个执行栈，按顺序执行  
