@@ -78,3 +78,19 @@ a.__proto__.__proto__ === B // 指向B函数，原本指向对象的原型Object
 a.__proto__.__proto__.__proto__ === B.__proto__ === Function.__proto__ === Function.prototype // 指向B函数的原型，也是函数Function的原型
 a.__proto__.__proto__.__proto__.__proto__ === Object.prototype // 指向对象的原型，函数继承了对象Object
 a.__proto__.__proto__.__proto__.__proto__.__proto__ // null
+
+
+// toString判断类型
+
+Object.prototype.toString.call(1) === '[object Number]'
+Object.prototype.toString.call(true) === '[object Boolean]'
+Object.prototype.toString.call(null) === '[object Null]'
+Object.prototype.toString.call(undefined) === '[object Undefined]'
+Object.prototype.toString.call('') === '[object String]'
+Object.prototype.toString.call(Symbol()) === '[object Symbol]'
+Object.prototype.toString.call(function(){}) === '[object Function]'
+Object.prototype.toString.call([]) === '[object Array]'
+Object.prototype.toString.call({}) === '[object Object]'
+Object.prototype.toString.call(new Date()) === '[object Date]'
+Object.prototype.toString.call(new RegExp()) === '[object RegExp]'
+...

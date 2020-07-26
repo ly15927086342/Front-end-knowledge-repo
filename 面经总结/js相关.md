@@ -152,8 +152,8 @@ then:3
 （4）返回值是 Promise  
 详见<a href="https://es6.ruanyifeng.com/#docs/async">async 函数</a>
 
-`async比promise好在哪里`
-（1）代码简介  
+`async比promise好在哪里`  
+（1）代码简洁  
 （2）错误处理（promise外部不能自定义try/catch，async可以）  
 （3）条件语句（async可在外部使用）  
 （4）中间值（promise需要链式调用then）  
@@ -180,6 +180,7 @@ then:3
 2.Array.prototype.isPrototypeOf(arr)  
 3.Array.isArray(arr)  
 4.arr.constructor === Array  
+5.Object.prototype.toString.call(arr) === '[object Array]'
   
 25. String()和new String() Number()和new Number()区别  
 前者是方法，后者是实例化  
@@ -278,5 +279,14 @@ inner-setTimeout---0
 ```
 then()函数内部不管是同步还是异步代码，都是在一次事件循环内执行，即同步代码直接执行，异步代码推入任务队列。这和async的await效果不太一样，await后面的函数中，同步代码会先执行，然后在then函数中的同步代码会和await后面的同步代码先执行，异步代码依次推入任务队列。
 
-33. 
+33. Proxy比defineProperty优劣：  
+（1）Proxy可以直接监听对象而不是属性  
+（2）Proxy可以监听数组变化，会触发方法名和length的变化  
+（3）Proxy有13种拦截方法  
+（4）Proxy返回新对象操作，defineProperty只能遍历对象属性修改  
+缺点：  
+（1）Proxy兼容性不好，不兼容IE浏览器  
+
+34. 
+
 

@@ -66,6 +66,7 @@ class EventEmitter {
             this.onceQueue[event].hasFired = true
         }
     }
+    // fn有函数名时可以筛选出，但是没有名称不行
     off(event, fn = null) { //可移除特定事件里的某个回调函数或者所有回调函数 
     	const fns = this.queue[event]
         if (!fns || fns.length == 0) return 
