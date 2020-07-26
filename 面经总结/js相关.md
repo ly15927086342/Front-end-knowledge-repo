@@ -153,11 +153,11 @@ then:3
 详见<a href="https://es6.ruanyifeng.com/#docs/async">async 函数</a>
 
 `async比promise好在哪里`
-（1）代码简介
-（2）错误处理（promise外部不能自定义try/catch，async可以）
-（3）条件语句（async可在外部使用）
-（4）中间值（promise需要链式调用then）
-（5）错误栈（promise无法定位错误位置）
+（1）代码简介  
+（2）错误处理（promise外部不能自定义try/catch，async可以）  
+（3）条件语句（async可在外部使用）  
+（4）中间值（promise需要链式调用then）  
+（5）错误栈（promise无法定位错误位置）  
   
 18. Object.defineProperty(obj,key,{})，参数有enumerable\configurable\writable\set\get  
   
