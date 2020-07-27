@@ -206,7 +206,8 @@ ES6模块的好处
 1.无需UMD模块格式  
 2.浏览器API无需全局化  
 3.不需要对象作为命名空间（例如Math）  
-CommonJS require的变量是缓存，不能修改，而ES6模块变量值是东岱变化的，但建议不要改写  
+4.局部引用  
+CommonJS require的变量是缓存，不能修改，而ES6模块变量值是动态变化的，但建议不要改写  
   
 29. ES6模块和CommonJS模块差异  
 1.CommonJS输出值拷贝，ES6输出值引用  
@@ -216,7 +217,7 @@ CommonJS require的变量是缓存，不能修改，而ES6模块变量值是东�
 冒泡、选择、插入、快排、归并、哈希  
 详见<a href="/数据结构与算法/算法/排序">/数据结构与算法/算法/排序</a>  
   
-31. 对象属性不可修改  
+31. 对象属性不可修改（优先级如下）  
 Object.freeze->Object.seal->preventExtensions->writable\configurable  
   
 32. Event Loop 事件循环  

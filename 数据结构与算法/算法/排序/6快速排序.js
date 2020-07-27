@@ -1,8 +1,9 @@
 /* writed by Li Yu
 ** date: 2020.4.9
 ** 原理：以第一个数为基准，将数组中比基准大的数和小的数放在基数两边，迭代至结束
+** 时间复杂度：O(nlog(n))
 */ 
-function sort(arr,start,end){
+function quick_sort(arr,start,end){
 	let key = arr[start]
 	let left = start
 	let right = end
@@ -20,6 +21,6 @@ function sort(arr,start,end){
 		arr[end] = arr[start]
 	}
 	arr[start] = key
-	sort(arr,left,start-1)
-	sort(arr,start+1,right)
+	fast_sort(arr,left,start-1)
+	fast_sort(arr,start+1,right)
 }

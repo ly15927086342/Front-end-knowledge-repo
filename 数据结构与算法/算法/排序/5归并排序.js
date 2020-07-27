@@ -4,7 +4,7 @@
 ** 时间复杂度： O(nlogn)
 */
 
-function mergeSort(arr){
+function merge_sort(arr){
 	let left = 0,right = arr.length-1;
 	split(arr,left,right)
 }
