@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BFC test</title>
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;
+		}
+		p{
+			line-height: 1;
+		}
+		.father{
+			overflow: auto;
+			background-color: yellow;
+		}
+		.div1{
+			/*overflow: auto;*/
+			display: block;
+			width: 100%;
+			background-color: red;
+		}
+		.div2{
+			float: left;
+			width: 200px;
+			height: 200px;
+			background-color: green;
+		}
+		.div3{
+			float: right;
+			width: 200px;
+			height: 200px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<p>父容器：黄色</p>
+	<p>float：绿色</p>
+	<p>block：红色</p>
+	<p>父容器为BFC，则父容器高度被float元素撑起；</p>
+	<p>block为BFC，则block元素不会被float元素覆盖；</p>
+	<div class="father">
+		<div class="div2">left</div>
+		<div class="div3">right</div>
+		<div class="div1">contain</div>
+	</div>
+</body>
+</html>

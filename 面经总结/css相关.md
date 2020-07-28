@@ -12,8 +12,9 @@ content-box：宽度仅代表内容
 border-box：宽度包括内容、内边距、边框  
 
 3. BFC是什么？  
-BFC是块级格式上下文，其内容是成块堆叠的  
-如何形成BFC：1.根 2.float不为none 3.display为inline-block、table-cell、table-capture 4.overflow不为visible 5.display为flex或inline-flex 6.position为absolute或fixed
+BFC是块级格式上下文（Block Formatting Context），其内容是成块堆叠的  
+如何形成BFC：1.根 2.float不为none 3.display为inline-block、table-cell、table-capture 4.overflow不为visible 5.display为flex或inline-flex 6.position为absolute或fixed  
+[https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
 
 作用：1.消除margin重叠 2.消除float导致高度塌陷 3.阻止元素被浮动元素覆盖
 
@@ -28,7 +29,9 @@ BFC是块级格式上下文，其内容是成块堆叠的
 		clear:both;
 	}
 ```
+
 5. em和rem  
+都是字体长度单位  
 em:相对父，1em相等  
 rem:相对html
 
@@ -37,18 +40,20 @@ rem:相对html
 移动端：border-shadow
 
 7. position有几个属性  
-relative:相对自身  
-absolute:相对最近的父节点relative，脱离文档流  
-fixed:相对窗口，脱离文档流
+static:默认
+relative:相对自身原本的位置  
+absolute:相对最近的非static祖先，脱离文档流  
+fixed:相对屏幕视口（viewport），脱离文档流
+sticky:按正常文档流定位，然后相对最近的滚动祖先偏移
 
 8. 垂直水平居中方式  
 text-align:center;line-height:height;  
 绝对定位 left:50%; top:50%; transform:translate(-50%);  
-绝地定位 top left right bottom 0;margin:auto;宽高固定  
+绝对定位 top left right bottom 0;margin:auto;宽高固定  
 flex  
 grid align-self:center; justify-self:center;
 
-9. 宽高固定，中间自适应
+9. 左右宽高固定，中间自适应
 
 ```css
 	.parent{overflow:hidden;}//BFC

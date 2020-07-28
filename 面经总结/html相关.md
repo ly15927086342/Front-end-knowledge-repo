@@ -74,3 +74,7 @@ history优势：
 2.pushState()修改会入栈  
 3.pushState()可添加任何类型，hash只能添加字符串  
 4.可设置title属性  
+
+13. [Web性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance)  
+
+14. 输入网址，回车之后的一系列过程描述？
