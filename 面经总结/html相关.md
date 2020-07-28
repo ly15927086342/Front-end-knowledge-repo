@@ -77,4 +77,18 @@ history优势：
 
 13. [Web性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance)  
 
-14. 输入网址，回车之后的一系列过程描述？
+14. `dns-prefetch`可以解决DNS解析延迟问题，使用方法如下：
+
+```html
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+```　　
+只有在跨域的资源才使用`dns-prefetch`，非跨域的没有效果，因为IP已经被解析。　　
+可以搭配`preconnect`使用，`preconnect`会建立与服务器的连接，将两者结合起来可提供机会，进一步减少跨源请求的感知延迟。
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+```  
+类似的rel属性还有`prefetch`、`prerender`、`preloading`，具体参考[https://css-tricks.com/prefetching-preloading-prebrowsing/](https://css-tricks.com/prefetching-preloading-prebrowsing/)
+
+15. 输入网址，回车之后的一系列过程描述？
