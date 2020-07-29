@@ -91,4 +91,9 @@ history优势：
 ```  
 类似的rel属性还有`prefetch`、`prerender`、`preloading`，具体参考[https://css-tricks.com/prefetching-preloading-prebrowsing/](https://css-tricks.com/prefetching-preloading-prebrowsing/)
 
+16. 关键渲染路径CRP（Critical rendering path）优化  
+（1）异步下载资源，减小请求数量，  
+（2）优化请求数量和请求的文件体积，  
+（3）区分资源的优先级来优化加载顺序，缩短关键路径长度。  
+
 15. 输入网址，回车之后的一系列过程描述？
