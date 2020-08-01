@@ -43,5 +43,9 @@ Parser会把Lexer分析之后的token序列进行语法分析，并生成一颗�
 
 不同于我们编译运行OC（Objective-C）代码，JS编译结束之后，并不会生成存放在内存或者硬盘之中的目标代码或可执行文件。生成的`指令字节码`（ByteCode），会被立即被JSCore这台虚拟机进行逐行解释执行。
 
+### 事件驱动机制
 
-https://www.zhihu.com/question/50920642
+![./eventloop.png](./eventloop.png)
+
+工作线程(WebWorker，JS宿主提供，和JS线程不在同一个运行环境，不共享一个作用域，故工作线程不能操作window和DOM)和事件驱动机制的存在，才让JS有了多线程异步能力。
+
