@@ -1,8 +1,10 @@
-// 方法一，给__proto__赋值
+// new的作用是：1调用构造函数 2对象私域[[prototype]]指向构造函数的原型对象
+// Object.setPrototypeOf和Object.create应该是等价的，后者效率比前者高
+
+// 方法一，setPrototypeOf
 function newOne(funcName,...parm){
 	let res = {}
-	// 等价于funcName.apply(res,parm)
-	res.__proto__ = funcName.prototype
+	Object.setPrototypeOf(res,funcName.prototype)
 	funcName.call(res,...parm)
 	return res
 }
