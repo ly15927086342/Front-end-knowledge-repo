@@ -5,7 +5,7 @@ date: _2020/08/01_
   
 ## WebKit
 
-浏览器内核，即WebKit。不同浏览器有自己的内核，Safri浏览器内核就是WebKit。
+浏览器内核，即WebKit。不同浏览器有自己的内核，Chrome／Safari／Opera用的是Webkit，IE用的是Trident，FireFox用的是Gecko。
 
 WebKit模块构成如下：
 
@@ -19,7 +19,7 @@ WebKit由四部分构成，一部分和UI交互，一部分和Native API交互�
 
 ## JSCore
 
-JSCore是WebKit默认内嵌的JS引擎。例如Chrome的V8引擎，目的都是为了解释并执行JS脚本。
+JSCore是WebKit默认内嵌的JS引擎。例如Chrome用的是V8，FireFox用的是SpiderMonkey，Safari用的是JavaScriptCore，IE用的是Chakra。，目的都是为了解释并执行JS脚本。
 
 JSCore工作流程如图：
 
