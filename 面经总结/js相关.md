@@ -280,7 +280,7 @@ inner-setTimeout---0
 ```
 then()函数内部不管是同步还是异步代码，都是在一次事件循环内执行，即同步代码直接执行，异步代码推入任务队列。这和async的await效果不太一样，await后面的函数中，同步代码会先执行，然后在then函数中的同步代码会和await后面的同步代码先执行，异步代码依次推入任务队列。  
 
-实际上队列还分`事件队列`和`消息队列`，前者总是优于后者执行，例如addEventListener('click',callback)会优先promise执行回调，前提是同一层循环内。详见[https://juejin.im/post/6844903556084924423](https://juejin.im/post/6844903556084924423)
+实际上队列还分`事件队列`和`消息队列`，前者总是优于后者执行，例如addEventListener('click',callback)会优先promise执行回调，前提是同一层循环内。详见[https://juejin.im/post/6844903556084924423](https://juejin.im/post/6844903556084924423)、[https://github.com/dwqs/blog/issues/61](https://github.com/dwqs/blog/issues/61)
 
 33. Proxy比defineProperty优劣：  
 （1）Proxy可以直接监听对象而不是属性  
