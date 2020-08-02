@@ -62,7 +62,7 @@ CSRF(Cross-Site Request Forgery，跨站点请求伪造)预防：1.后台Http Re
 <script async></script><!-- 异步加载，下载完就执行，无法保证执行顺序 -->  
 <script type="module"></script><!-- 效果相当于defer -->  
 ```  
-![](./defer_async.jpg)
+![](/static/imgs/defer_async.jpg)
   
 12. 路由hash和history区别  
 hash：#开头，利用window.onhashchange事件进行监听，不会刷新页面，通过location.hash获取  
