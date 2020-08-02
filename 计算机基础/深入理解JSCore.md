@@ -9,7 +9,7 @@ date: _2020/08/01_
 
 WebKit模块构成如下：
 
-![./webkit.png](./webkit.png)
+![/static/imgs/webkit.png](/static/imgs/webkit.png)
 
 WebKit由四部分构成，一部分和UI交互，一部分和Native API交互，剩下WebCore是渲染引擎，JSCore是JS引擎。
 
@@ -23,7 +23,7 @@ JSCore是WebKit默认内嵌的JS引擎。例如Chrome用的是V8，FireFox用的
 
 JSCore工作流程如图：
 
-![./jscore.png](./jscore.png)
+![/static/imgs/jscore.png](/static/imgs/jscore.png)
 
 主要分为三部分：词法分析、语法分析和解释执行。
 
@@ -45,7 +45,7 @@ Parser会把Lexer分析之后的token序列进行语法分析，并生成一颗�
 
 ### 事件驱动机制
 
-![./eventloop.png](./eventloop.png)
+![/static/imgs/eventloop.png](/static/imgs/eventloop.png)
 
 工作线程(WebWorker，JS宿主提供，和JS线程不在同一个运行环境，不共享一个作用域，故工作线程不能操作window和DOM)和事件驱动机制的存在，才让JS有了多线程异步能力。
 
