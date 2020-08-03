@@ -8,7 +8,7 @@ observe(printName)
 observe(printAge)
 
 function set(target,key,value,receiver){
-	queue.forEach(obs=>obs())
+	queue.forEach(obs=>obs.call(target))
 	return Reflect.set(target,key,value,receiver)
 }
 
@@ -18,15 +18,11 @@ function get(target,key,receiver){
 }
 
 function printName(){
-	setTimeout(()=>{
-		console.log(people.name)
-	}) 
+	console.log(this.name)
 }
 
 function printAge(){
-	setTimeout(()=>{
-		console.log(people.age)
-	}) 
+	console.log(this.age)
 }
 
 // defineProperty实现
@@ -48,6 +44,7 @@ function observe(obj,key){
 			return old
 		}
 	})
+	//闭包
 	return function(){
 		return old;
 	}
