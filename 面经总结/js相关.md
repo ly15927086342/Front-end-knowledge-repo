@@ -51,6 +51,7 @@ Math.max.apply(null,Attay)
 8. this指向  
 new调用 > 显示调用 > 隐式调用 > 默认调用  
 详见<a href="/js原理/this理解.js">/js原理/this理解.js</a>  
+`箭头函数的this指向`，是在定义时决定的，不是执行时决定的
   
 9. 原生对象和宿主对象  
 原生对象：引用类型=》Array\Date\RegExp  
@@ -290,6 +291,7 @@ then()函数内部不管是同步还是异步代码，都是在一次事件循�
 缺点：  
 （1）Proxy兼容性不好，不兼容IE浏览器  
 
-34. 
+34. ES6引入的class和原有的JavaScript原型继承有什么区别呢？  
+实际上它们没有任何区别，class的作用就是让JavaScript引擎去实现原来需要我们自己编写的原型链代码。简而言之，用class的好处就是极大地简化了原型链代码。
 
 

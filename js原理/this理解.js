@@ -43,3 +43,4 @@ console.log( obj1.a ); // 2
 var baz = new bar(3);  
 console.log( obj1.a ); // 2  
 console.log( baz.a ); // 3
+
