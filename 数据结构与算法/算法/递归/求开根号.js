@@ -5,15 +5,15 @@
 ** 递归上属于求解方法是递归的
 */
 
-function doIt(left,right,target){
-	if(right-left<0.001){
-		return (right + left)/2
+function doIt(precise,left,right,target){
+	let mid = (right + left)/2
+	if(Math.abs(target-mid*mid)<precise){
+		return mid
 	}
-	let mid = (left + right) / 2
 	if(mid*mid > target){
-		return doIt(left,mid,target)
+		return doIt(precise,left,mid,target)
 	}else{
-		return doIt(mid,right,target)
+		return doIt(precise,mid,right,target)
 	}
 }
 
@@ -22,7 +22,7 @@ function begin(target){
 	if(target<1){
 		mm = 1
 	}
-	let res = doIt(0,mm,target)
+	let res = doIt(0.001,0,mm,target)
 	console.log(res)
 }
 

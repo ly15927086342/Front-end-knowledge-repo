@@ -5,11 +5,8 @@
 */ 
 
 function shell_sort(arr,num){
-	let gap = 1,
-	len = arr.length
-	while(gap < len/num){
-		gap = gap*num+1
-	}
+	let len = arr.length
+	let gap = Math.floor(gap/num)>0? Math.floor(gap/num):1
 	for(;gap>=1;gap=Math.floor(gap/num)){
 		for(let i=gap;i<len;i++){
 			let j = i-gap

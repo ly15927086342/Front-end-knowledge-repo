@@ -24,6 +24,7 @@ class BTree {
         isLeft = true;
         stack.push(curNode);
       } else if (str[index] === ")") {
+        // 确保根节点不出栈
         if (index < str.length - 1) {
           stack.pop();
         }

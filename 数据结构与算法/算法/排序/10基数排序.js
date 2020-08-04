@@ -1,7 +1,7 @@
 /* writed by Li Yu
 ** date: 2020.7.27
 ** 时间复杂度：O(n^2)
-** 原理：先对每个整数的个位数装桶，然后出桶；再对十位装桶出桶...
+** 原理：利用不同区间保存数字，然后再吐出
 ** 代码来自：https://www.runoob.com/w3cnote/radix-sort.html
 */ 
 

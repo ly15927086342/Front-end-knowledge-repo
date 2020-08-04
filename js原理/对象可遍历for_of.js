@@ -34,3 +34,5 @@ it.next(); // { value:undefined, done:true }
 for (var v of myObject) {      
 	console.log( v ); 
 } // 2  // 3
+
+// 法二，遍历对象的key，然后取得obj[key]

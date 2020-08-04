@@ -10,17 +10,20 @@ function quick_sort(arr,start,end){
 	if(left >= right){
 		return
 	}
-	while(start < end){
-		if(start < end && key <= arr[end]){
-			end--
+	while(left < right){
+		// 等号很关键，少了等号直接死循环
+		// 因为如何arr[left]==arr[right]，会陷入循环
+		// 只要有一个等号即可，两个等号也行
+		if(left < right && key <= arr[right]){
+			right--
 		}
-		arr[start] = arr[end]
-		if(start < end && key > arr[start]){
-			start++
+		arr[left] = arr[right]
+		if(left < right && key > arr[left]){
+			left++
 		}
-		arr[end] = arr[start]
+		arr[right] = arr[left]
 	}
-	arr[start] = key
-	fast_sort(arr,left,start-1)
-	fast_sort(arr,start+1,right)
+	arr[left] = key
+	quick_sort(arr,start,left-1)
+	quick_sort(arr,left+1,end)
 }

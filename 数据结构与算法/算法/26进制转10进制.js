@@ -11,7 +11,7 @@ function turn26to10(str){
 	let len = str.length;
 	let arr = [];
 	let res = 0;
-	for(let i=65;i<65+26;i++){
+	for(let i=65;i<=65+26;i++){
 		arr.push(String.fromCharCode(i));
 	}
 	for(let i = len-1;i >= 0;i--){
@@ -44,6 +44,11 @@ function turn10to2(num){
 		cur = parseInt(cur / 2);
 	}
 	return res;
+}
+
+// 十进制转二进制法二
+function turn10to2(num){
+	return num.toString(2);
 }
 
 /*法二*/

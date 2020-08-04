@@ -40,9 +40,10 @@ class Tree{
 	** 比较子树的高度，返回高度+1(节点本身)
 	*/
 	static getHeight(node){
+		//没有子节点，则当前节点高度为1
 		if(node.child == null){
 			return 1
-		}else{
+		} else {
 			let max = 0
 			for(let i =0;i<node.child.length;i++){
 				let h = this.getHeight(node.child[i])

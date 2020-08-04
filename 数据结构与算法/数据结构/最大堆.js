@@ -12,11 +12,12 @@ class MaxHeap{
 		this.arr = []
 		this.arr.push(0)
 		array.forEach(item=>{
-			this.insert(item)
+			this.insertTail(item)
+			// this.insertHead(item)
 		})
 	}
 	//插入任意节点
-	insert(num){
+	insertTail(num){
 		this.arr.push(num)//推到数组最末
 		let child = this.arr.length-1//子节点索引
 		let parent = parseInt(child/2)//父节点索引
