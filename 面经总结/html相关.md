@@ -97,3 +97,12 @@ history优势：
 （3）区分资源的优先级来优化加载顺序，缩短关键路径长度。  
 
 15. 输入网址，回车之后的一系列过程描述？
+
+16. otherWindow.Postmessage()对页面的要求是，必须能够拿到窗口对象的引用，有以下四种：
+
+otherWindow是window对象的引用：
+
+（1）window.open/window.opener  
+（2）HTMLIFrameElement.contentWindow  
+（3）window.parent  
+（4）window.frames  

@@ -294,11 +294,57 @@ then()函数内部不管是同步还是异步代码，都是在一次事件循�
 34. ES6引入的class和原有的JavaScript原型继承有什么区别呢？  
 实际上它们没有任何区别，class的作用就是让JavaScript引擎去实现原来需要我们自己编写的原型链代码。简而言之，用class的好处就是极大地简化了原型链代码。
 
-35. 标记-清除算法
+35. 标记-清除算法  
 这个算法假定设置一个叫做根（root）的对象（在Javascript里，根是全局对象）。垃圾回收器将定期从根开始，找所有从根开始引用的对象，然后找这些对象引用的对象……从根开始，垃圾回收器将找到所有可以获得的对象和收集所有不能获得的对象。
 
 这个算法比 计数垃圾收集 要好，因为“有零引用的对象”总是不可获得的，但是相反却不一定，参考“循环引用”。
 
 从2012年起，所有现代浏览器都使用了标记-清除垃圾回收算法。所有对JavaScript垃圾回收算法的改进都是基于标记-清除算法的改进，并没有改进标记-清除算法本身和它对“对象是否不再需要”的简化定义。
 
-36. 
+指要闭包的引用赋值为null，闭包内的变量就会被回收，例
+
+	function A(){
+		let a = 0
+		let func = function(){
+			return a++
+		}
+		return func
+	}
+
+	let b = A()
+	b()//0
+	b()//1
+	b()//2
+	b = null//回收
+
+	let t = A()
+	t()//0，这里从0开始，说明A()内的a变量已经被回收了，这里重新初始化了
+	t()//1
+	...
+
+36. performance  
+[资源加载的各个阶段耗时计算](https://developer.mozilla.org/zh-CN/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API)
+
+![/static/imgs/ResourceTiming.jpg](/static/imgs/ResourceTiming.jpg)
+
+	performance.mark("mark-A"); //标记
+	// to do ...
+	performance.mark("mark-B"); //标记
+	performance.measure("measure-1", "mark-A", "mark-B");//测量
+	entries = performance.getEntriesByName("measure-1","measure");//获取测量对象
+	performance.clearMeasures();//清楚测量对象
+
+	var THRESHOLD = 1500;
+	var observe_frame = new PerformanceObserver(function(list) {//监听performance
+		var perfEntries = list.getEntriesByType("frame");
+	  	for (var i=0; i < perfEntries.length; i++) {
+	    	if (perfEntries[i].duration > THRESHOLD) {//时长超过临界值，过久
+		      	console.log("Warning: frame '" + THRESHOLD + "' exceeded!");
+		    }
+	  	}
+	});
+	observe_frame.observe({entryTypes: ['frame']});
+
+参考标准[High Resolution Time Level 2](https://www.w3.org/TR/hr-time/)
+
+37. 

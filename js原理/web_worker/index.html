@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"  />
+  <title>Test threads fibonacci</title>
+</head>
+<body>
+  <input id='ip' type="text" name="test" onchange="here()">
+  <div id="result"></div>
+
+  <script language="javascript">
+    function here(){
+      let val = document.querySelector('#ip').value
+      var worker = new Worker("fibonacci.js");
+
+      worker.onmessage = function(event) {
+        document.getElementById("result").textContent = event.data;
+        console.log("Got: " + event.data + "\n");
+      };
+
+      worker.onerror = function(error) {
+        console.log("Worker error: " + error.message + "\n");
+        throw error;
+      };
+
+      worker.postMessage(val);
+    }
+  </script>
+</body>
+</html>
