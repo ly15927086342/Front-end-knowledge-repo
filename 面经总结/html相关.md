@@ -66,14 +66,14 @@ CSRF(Cross-Site Request Forgery，跨站点请求伪造)预防：1.后台Http Re
   
 12. 路由hash和history区别  
 hash：#开头，利用window.onhashchange事件进行监听，不会刷新页面，通过location.hash获取  
-history：利用html5中pushState()和replaceState()方法，在back\forward\go基础上，点刷新会重新向后端发请求  
+history：利用html5中pushState()和replaceState()方法，在back\forward\go基础上，点刷新会重新向后端发请求，浏览器连接修改会触发popstate事件  
 区别一：history比hash更美观  
 区别二：hash#之前的URL才会发后端，history的URL需要后端有该URL的响应，否则会返回错误码  
 history优势：  
 1.pushState()修改任何同源URL，而hash只能在同文档URL#后面加值  
-2.pushState()修改会入栈  
-3.pushState()可添加任何类型，hash只能添加字符串  
-4.可设置title属性  
+2.pushState()url是否一致都会入栈，hash只有不同的才入栈  
+3.pushState()可添加任何类型（stateObject），hash只能添加短字符串  
+4.可额外设置title属性  
 
 13. [Web性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance)  
 
