@@ -6,7 +6,11 @@
 
 function shell_sort(arr,num){
 	let len = arr.length
-	let gap = Math.floor(gap/num)>0? Math.floor(gap/num):1
+	let gap = 1
+	//保证最后一次排序的gap为1
+	while(num*gap<len){
+		gap = gap*num + 1
+	}
 	for(;gap>=1;gap=Math.floor(gap/num)){
 		for(let i=gap;i<len;i++){
 			let j = i-gap

@@ -347,4 +347,30 @@ then()函数内部不管是同步还是异步代码，都是在一次事件循�
 
 参考标准[High Resolution Time Level 2](https://www.w3.org/TR/hr-time/)
 
-37. 
+37. ASCII码和整数互转  
+
+		let num = 65
+		let asc = String.fromCharCode(num) // asc = 'A'
+		let asc_num = asc.charCodeAt() // asc_num = 65
+
+38. 十进制转其他进制
+
+		let a = 10
+		a.toString(2) // '1010'
+		a.toString(8) // '12'
+		a.toString(16) // 'a'
+
+其他进制转十进制
+
+	// 十进制以内的进制可用，大于十进制，对应关系就改变了，不适用
+	function everyToTen(num,str){
+		let len = str.length
+		let res = 0
+		for(let i=len-1;i>=0;i--){
+			res += Math.pow(num,len-1-i)*parseInt(str[i])
+		}
+		return res
+	}
+	everyToTen(2,'1010') // 10
+
+39. 

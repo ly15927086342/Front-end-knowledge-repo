@@ -7,25 +7,18 @@
 
 function bucketSort(arr, bucketSize) {
     if (arr.length === 0) {
-      return arr;
+        return arr;
     }
 
-    var i;
-    var minValue = arr[0];
-    var maxValue = arr[0];
-    for (i = 1; i < arr.length; i++) {
-      if (arr[i] < minValue) {
-          minValue = arr[i];                // 输入数据的最小值
-      } else if (arr[i] > maxValue) {
-          maxValue = arr[i];                // 输入数据的最大值
-      }
-    }
+    let i;
+    let minValue = Math.min(...arr);
+    let maxValue = Math.max(...arr);
 
     //桶的初始化
-    var DEFAULT_BUCKET_SIZE = 5;            // 设置桶的默认数量为5
+    let DEFAULT_BUCKET_SIZE = 5;            // 设置桶的默认数量为5
     bucketSize = bucketSize || DEFAULT_BUCKET_SIZE;
-    var bucketCount = Math.floor((maxValue - minValue) / bucketSize) + 1;  
-    var buckets = new Array(bucketCount);
+    let bucketCount = Math.floor((maxValue - minValue) / bucketSize) + 1;  
+    let buckets = new Array(bucketCount);
     for (i = 0; i < buckets.length; i++) {
         buckets[i] = [];
     }
@@ -38,7 +31,7 @@ function bucketSort(arr, bucketSize) {
     arr.length = 0;
     for (i = 0; i < buckets.length; i++) {
         insertionSort(buckets[i]);                      // 对每个桶进行排序，这里使用了插入排序
-        for (var j = 0; j < buckets[i].length; j++) {
+        for (let j = 0; j < buckets[i].length; j++) {
             arr.push(buckets[i][j]);                      
         }
     }
