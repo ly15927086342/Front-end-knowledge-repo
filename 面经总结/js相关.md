@@ -214,8 +214,8 @@ CommonJS require的变量是缓存，不能修改，而ES6模块变量值是动�
 1.CommonJS输出值拷贝，ES6输出值引用  
 2.CommonJS运行时加载，ES6编译时加载  
   
-30. 排序方法  
-冒泡、选择、插入、快排、归并、哈希  
+30. 排序方法（十大经典排序）  
+冒泡、选择、插入、希尔、归并、快排、堆、计数、桶、基数  
 详见<a href="/数据结构与算法/算法/排序">/数据结构与算法/算法/排序</a>  
   
 31. 对象属性不可修改（优先级如下）  
@@ -279,7 +279,7 @@ setTimeout---200
 promise5
 inner-setTimeout---0
 ```
-then()函数内部不管是同步还是异步代码，都是在一次事件循环内执行，即同步代码直接执行，异步代码推入任务队列。这和async的await效果不太一样，await后面的函数中，同步代码会先执行，然后在then函数中的同步代码会和await后面的同步代码先执行，异步代码依次推入任务队列。  
+~~then()函数内部不管是同步还是异步代码，都是在一次事件循环内执行，即同步代码直接执行，异步代码推入任务队列。这和async的await效果不太一样，await后面的函数中，同步代码会先执行，然后在then函数中的同步代码会和await后面的同步代码先执行，异步代码依次推入任务队列。~~  
 
 实际上队列还分`事件队列`和`消息队列`，前者总是优于后者执行，例如addEventListener('click',callback)会优先promise执行回调，前提是同一层循环内。详见[https://juejin.im/post/6844903556084924423](https://juejin.im/post/6844903556084924423)、[https://github.com/dwqs/blog/issues/61](https://github.com/dwqs/blog/issues/61)
 
@@ -301,7 +301,7 @@ then()函数内部不管是同步还是异步代码，都是在一次事件循�
 
 从2012年起，所有现代浏览器都使用了标记-清除垃圾回收算法。所有对JavaScript垃圾回收算法的改进都是基于标记-清除算法的改进，并没有改进标记-清除算法本身和它对“对象是否不再需要”的简化定义。
 
-指要闭包的引用赋值为null，闭包内的变量就会被回收，例
+只要闭包的引用赋值为null，闭包内的变量就会被回收，例
 
 	function A(){
 		let a = 0
@@ -332,7 +332,7 @@ then()函数内部不管是同步还是异步代码，都是在一次事件循�
 	performance.mark("mark-B"); //标记
 	performance.measure("measure-1", "mark-A", "mark-B");//测量
 	entries = performance.getEntriesByName("measure-1","measure");//获取测量对象
-	performance.clearMeasures();//清楚测量对象
+	performance.clearMeasures();//清除测量对象
 
 	var THRESHOLD = 1500;
 	var observe_frame = new PerformanceObserver(function(list) {//监听performance
@@ -362,15 +362,15 @@ then()函数内部不管是同步还是异步代码，都是在一次事件循�
 
 其他进制转十进制
 
-	// 十进制以内的进制可用，大于十进制，对应关系就改变了，不适用
-	function everyToTen(num,str){
-		let len = str.length
-		let res = 0
-		for(let i=len-1;i>=0;i--){
-			res += Math.pow(num,len-1-i)*parseInt(str[i])
+		// 十进制以内的进制可用，大于十进制，对应关系就改变了，不适用
+		function everyToTen(num,str){
+			let len = str.length
+			let res = 0
+			for(let i=len-1;i>=0;i--){
+				res += Math.pow(num,len-1-i)*parseInt(str[i])
+			}
+			return res
 		}
-		return res
-	}
-	everyToTen(2,'1010') // 10
+		everyToTen(2,'1010') // 10
 
 39. 

@@ -19,7 +19,7 @@ WebKit由四部分构成，一部分和UI交互，一部分和Native API交互�
 
 ## JSCore
 
-JSCore是WebKit默认内嵌的JS引擎。例如Chrome用的是V8，FireFox用的是SpiderMonkey，Safari用的是JavaScriptCore，IE用的是Chakra。，目的都是为了解释并执行JS脚本。
+JSCore是WebKit默认内嵌的JS引擎。例如Chrome用的是V8，FireFox用的是SpiderMonkey，Safari用的是JavaScriptCore，IE用的是Chakra。目的都是为了解释并执行JS脚本。
 
 JSCore工作流程如图：
 

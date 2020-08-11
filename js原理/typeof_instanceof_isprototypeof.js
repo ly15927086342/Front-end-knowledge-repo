@@ -56,6 +56,13 @@ a instanceof A // true
 a instanceof B // false(不是原型继承，所以没法在a的原型链中找到B的原型)
 A.prototype.__proto__ === B // true
 
+//这里我们可以做个检查
+
+a instanceof Function // true，因为B函数现在是A的原型，所以函数在a实例的原型链上
+a instanceof Object   // true
+b instanceof Function // false，因为正常的函数实例对象的原型指向函数的prototype，而B.prototype是一个对象，包含了constructor和__proto__
+b instanceof Object   // true
+
 b instanceof A // false
 b instanceof B // true
 

@@ -15,7 +15,7 @@ const deepClone = obj => {
 	if(obj === null) return null; // Object.assign({},null)会转化为{}
 	if(obj === undefined) return undefined; // Object.assign({},undefined)会转化为{}
 	let clone = Object.assign({},obj); // 不管是不是数组，都转对象
-	Object.keys(clone).forEach(key=>(
+	Reflect.ownKeys(clone).forEach(key=>(
 		clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
 	);
 	if(Array.isArray(obj)){
@@ -29,7 +29,7 @@ const deepClone = obj => {
 // 衍生数组的深拷贝
 const deepCloneArr = obj => {
 	let clone = Object.assign({},obj); // 不管是不是数组，都转对象
-	Object.keys(clone).forEach(key=>(
+	Reflect.ownKeys(clone).forEach(key=>(
 		clone[key] = typeof obj[key] === 'object' ? deepCloneArr(obj[key]) : obj[key])
 	);
 	clone.length = obj.length
