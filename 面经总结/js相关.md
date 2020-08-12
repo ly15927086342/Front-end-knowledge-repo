@@ -373,4 +373,18 @@ inner-setTimeout---0
 		}
 		everyToTen(2,'1010') // 10
 
-39. 
+39. 二进制、八进制和十六进制表达
+
+二进制：0b，例如0b110
+八进制：0o，例如0o236
+十六进制：0x，例如0x15e
+
+40. 判断两个小数相等
+
+		Math.abs(a,b) < Number.EPSILON
+
+41. 大数运算，可以将数字转为字符串再处理
+
+整数的安全范围是[-2^53 + 1, 2^53 - 1]，即[Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER]
+
+42. 
