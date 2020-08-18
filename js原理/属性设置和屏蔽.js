@@ -5,7 +5,7 @@ myObject.foo = "bar"
 // 此时会给myObject对象添加foo属性，即产生属性屏蔽
 
 // 2. myObject原型链上有foo属性，但是只读的（writable: false），
-// 此时无法给myObject底姓添加foo属性，也无法修改原型的foo属性
+// 此时无法给myObject底层添加foo属性，也无法修改原型的foo属性
 
 // 3. myObject原型链上有foo属性，但是一个setter，此时会直接调用
 // 该setter，不会给myObject对象添加foo属性

@@ -5,20 +5,22 @@
 */ 
 
 function heap_sort(arr){
-	let res = []
+	// let res = []
+	res = arr
+	//change函数遍历到的最后的节点索引
 	let len = arr.length
 	// 实际上用change也可以构成大顶堆
-	function insert(res,num){
-		res.push(num)
-		let child = res.length-1
-		let parent = parseInt((child-1)/2)
-		while(parent>=0&&res[child]>res[parent]){
-			res[child] = res[parent]
-			res[parent] = num
-			child = parent
-			parent = parseInt((child-1)/2)
-		}
-	}
+	// function insert(res,num){
+	// 	res.push(num)
+	// 	let child = res.length-1
+	// 	let parent = parseInt((child-1)/2)
+	// 	while(parent>=0&&res[child]>res[parent]){
+	// 		res[child] = res[parent]
+	// 		res[parent] = num
+	// 		child = parent
+	// 		parent = parseInt((child-1)/2)
+	// 	}
+	// }
 	// 保证顶点以下顺序正确
 	function change(res,num){
 		let left = 2*num+1
@@ -37,8 +39,11 @@ function heap_sort(arr){
 			change(res,max)
 		}
 	}
-	for(let i=0;i<arr.length;i++){
-		insert(res,arr[i])
+	// for(let i=0;i<arr.length;i++){
+	// 	insert(res,arr[i])
+	// }
+	for(let i=len-1;i>=0;i--){
+		change(res,i)
 	}
 	for(let i=res.length-1;i>0;i--){
 		let tmp = res[i]

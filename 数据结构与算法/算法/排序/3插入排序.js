@@ -7,7 +7,7 @@
 function insert_sort(arr){
 	for(let i=1;i<arr.length;i++){
 		let tmp = arr[i]
-		let j = i-1
+		let j = i-1//所以i从1开始
 		for(;j>=0&&tmp<arr[j];j--){
 			arr[j+1] = arr[j]
 		}

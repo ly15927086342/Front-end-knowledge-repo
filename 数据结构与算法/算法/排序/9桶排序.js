@@ -16,7 +16,7 @@ function bucketSort(arr, bucketSize) {
     //桶的初始化,设置桶内元素的默认数量为5
     let DEFAULT_BUCKET_SIZE = 5;
     bucketSize = bucketSize || DEFAULT_BUCKET_SIZE;
-    let bucketCount = Math.floor((maxValue - minValue) / bucketSize)+1;  
+    let bucketCount = Math.floor((maxValue - minValue) / bucketSize)+1; 
     let buckets = new Array(bucketCount);
     for (let i = 0; i < buckets.length; i++) {
         buckets[i] = [];
@@ -39,11 +39,9 @@ function bucketSort(arr, bucketSize) {
             //所有数都小于arr[i]
             if(j==len){
                 buckets[id].push(arr[i])
-            }            
+            }
         }
     }
-
-    console.log(maxValue,minValue,buckets)
 
     let id = 0
     for (let i = 0; i < buckets.length; i++) {                  
