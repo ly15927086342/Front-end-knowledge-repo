@@ -87,7 +87,7 @@ await 后本质是一个promise函数，不管是同步还是异步函数，都�
 function promise(id){
 	let p =new Promise((r,j)=>{
 		console.log(id);
-		r(id)
+		r(id);
 	})
 	p.then(res=>{console.log('then:'+res)})
 	return p;
@@ -363,4 +363,58 @@ inner-setTimeout---0
 
 整数的安全范围是[-2^53 + 1, 2^53 - 1]，即[Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER]
 
-42. 
+42. setTimeout(callback,time,...arg) 可以把callback的参数写在...arg处
+
+43. Promise
+
+```javascript
+new Promise((resolve,reject)=>{
+	if(/*success*/){
+		resolve(...arg)
+	}else{
+		reject(new Error('...'))
+	}
+}).then(res=>{
+	//resolve...
+}[,err=>{
+	//reject...
+}]).catch(err=>{
+	//reject...如果then第二个参数不写，err就会传到这里
+})
+```
+
+Promise内部的参数函数会先执行同步代码，然后执行resolve()或reject()，正常来说resolve()和reject()之后的代码不应该继续执行，所以可以写成
+
+```javascript
+new Promise((res,rej)=>{
+	return res()
+	//这里的同步代码不再执行
+})
+```
+
+如果resolve()中的参数是另一个promise，那么就会等待该promise状态改变，才会调用resolve()
+
+Promise 内部的错误不会影响到 Promise 外部的代码，通俗的说法就是`“Promise 会吃掉错误”`。如以下代码
+
+```javascript
+const someAsyncThing = function() {
+  return new Promise(function(resolve, reject) {
+    // 下面一行会报错，因为x没有声明
+    resolve(x + 2);
+  });
+};
+
+someAsyncThing().then(function() {
+  console.log('everything is great');
+});
+
+setTimeout(() => { console.log(123) }, 2000);
+// Uncaught (in promise) ReferenceError: x is not defined
+// 123
+```
+
+如何不使用catch捕获promise内部的错误？  
+（1）利用window.onerror=function(err){console.log(err);return true;}
+在promise内部使用setTimeout，改变作用域，错误可以被监听到  
+（2）使用then的第二个参数进行捕获（本质上也就是catch）因为catch(err=>{})等价于then(null,err=>{})
+

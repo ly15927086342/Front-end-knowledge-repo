@@ -75,6 +75,11 @@ history优势：
 3.pushState()可添加任何类型（stateObject），hash只能添加短字符串  
 4.可额外设置title属性  
 
+`history和hash的个人理解`：
+
+hash在地址栏输入是不会重新发请求的，但是history的话是会重新发请求，那么如果vue-router选择history的话，如果在地址栏输入一个地址，后端如果没有处理该路由，就会返回404。因此history模式要求后端路由对前端所有路由做个重定向，然后前端路由对定向后的地址做一个组件进行匹配，统一展示页面。  
+如果是在页面内修改history（go\forward\back\pushstate\replacestate），是不会触发页面刷新的，因此只需要前端路由匹配到组件就可以根据路由进行渲染。`这一点要和地址栏输入做个区分`。
+
 13. [Web性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance)  
 
 14. `dns-prefetch`可以解决DNS解析延迟问题，使用方法如下：
@@ -117,3 +122,12 @@ otherWindow是window对象的引用：
 （2）HTMLIFrameElement.contentWindow  
 （3）window.parent  
 （4）window.frames  
+
+
+17. XSS跨站点脚本攻击
+
+
+
+18. CSRF跨站点请求伪造
+
+
