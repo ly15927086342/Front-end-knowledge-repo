@@ -418,3 +418,94 @@ setTimeout(() => { console.log(123) }, 2000);
 在promise内部使用setTimeout，改变作用域，错误可以被监听到  
 （2）使用then的第二个参数进行捕获（本质上也就是catch）因为catch(err=>{})等价于then(null,err=>{})
 
+Promise.all([p1,p2,p3]).then(res=>{})执行情况：  
+（1）三个都fulfilled，返回值组成数组，传给p的回调函数
+（2)有一个rejected，就返回第一rejected的返回值，给p的回调函数
+
+如果参数promise自己定义了catch，就不会触发p的回调函数
+
+Promise.race([p1,p2,p3])执行情况：  
+（1）有一个promise改变状态，就执行p回调函数  
+场景：给某些链接设定请求时长，例
+
+```javascript
+const p = Promise.race([
+  fetch('/resource-that-may-take-a-while'),
+  new Promise(function (resolve, reject) {
+    setTimeout(reject, 5000, new Error('request timeout'))
+  })
+]);
+
+p
+.then(console.log)
+.catch(console.error);
+```
+
+Promise.allSettled([p1,p2,p3]).then(res=>{})执行情况：
+（1）所有promise都执行完，不管是fulfilled还是rejected，都会传入p的回调函数then
+
+该方法对比Promise.all()，优势在于可以确保所有promise都执行完毕，而all()方法只有全fulfilled才then，而一旦有一个rejected，就catch
+
+Promise.any([p1,p2,p3])执行情况：
+（1）有一个promise状态改为了fulfilled就调用p的回调函数
+
+和Promise.race()区别就是race()只要状态改变就回调，any()只有状态改为fulfilled才回调
+
+44. 如何实现async/await？
+
+利用generator和promise可以实现，如下：
+
+`解释`：async和generator的区别在于，async可以自动执行，而generator需要手动控制，只需要把手动改为自动，就可以实现和async一样的效果。
+
+```javascript
+function autoRun(generator){
+	const it = generator()
+
+	//递归调用go
+	function go(res){
+		//跳出迭代
+		if(res.done){
+			return res.value
+		}
+		//可能不是promise函数，可能是一个值，进行判断
+		if(res.value.then){
+			return res.value.then(result=>{
+				return go(it.next(result))
+			},error=>{
+				return go(it.error(error))
+			})
+		}else{
+			return go(it.next(res.value))
+		}
+	}
+	
+	go(it.next())
+}
+
+function test(a){
+	return new Promise(res=>{
+		setTimeout(res,1000,a)
+	})
+}
+
+function* func(){
+	console.log(yield test(1))
+	console.log(yield test(2))
+	console.log(yield 3)
+	console.log(yield test(4))
+}
+
+autoRun(func)
+// 1
+// 一秒过后，5
+// 3
+```
+上述代码等价于  
+```javascript
+async function func(){
+	console.log(await test(1))
+	console.log(await test(2))
+	console.log(await 3)
+	console.log(await test(4))
+}
+```
