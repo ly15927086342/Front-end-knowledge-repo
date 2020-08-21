@@ -45,5 +45,13 @@
 		<div class="div3">right</div>
 		<div class="div1">contain</div>
 	</div>
+	上下边距重叠
+	<div style="margin-bottom: -20px;background-color: green;">dd</div>
+	<div style="margin-top: 15px;background-color: yellow;">ee</div>
+	左右边距不重叠
+	<div style="display: flex;flex-direction:row;align-items: flex-start;justify-content: flex-start;">
+		<div style="background-color: green;margin-right: 20px">fefe</div>
+		<div style="background-color: yellow;margin-left: -20px">dfdff</div>
+	</div>
 </body>
 </html>

@@ -10,10 +10,12 @@ var obj2 = Object.assign({},obj1)
 // 1. JSON
 var obj2 = JSON.parse(JSON.stringify(obj1))
 
-// 2. 递归
+// 2. 递归，深拷贝基本类型+object，不包括函数、Date等特殊对象
 const deepClone = obj => {
 	if(obj === null) return null; // Object.assign({},null)会转化为{}
-	if(obj === undefined) return undefined; // Object.assign({},undefined)会转化为{}
+	//基本类型
+	let basic = ['number','string','boolean','symbol','undefined'];
+	if((typeof obj).includes())return obj
 	let clone = Object.assign({},obj); // 不管是不是数组，都转对象
 	Reflect.ownKeys(clone).forEach(key=>(
 		clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
