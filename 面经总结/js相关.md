@@ -451,61 +451,16 @@ Promise.any([p1,p2,p3])执行情况：
 
 和Promise.race()区别就是race()只要状态改变就回调，any()只有状态改为fulfilled才回调
 
-44. 如何实现async/await？
+44. 如何实现async/await？见[/js原理/重写async函数.js](/js原理/重写async函数.js)  
 
-利用generator和promise可以实现，如下：
+官方的_asyncToGenerator函数如图：!(/static/imgs/asyncToGenerator.png)[/static/imgs/asyncToGenerator.png]
 
-`解释`：async和generator的区别在于，async可以自动执行，而generator需要手动控制，只需要把手动改为自动，就可以实现和async一样的效果。
+45. 箭头函数和普通函数的区别？
 
-```javascript
-function autoRun(generator){
-	const it = generator()
-
-	//递归调用go
-	function go(res){
-		//跳出迭代
-		if(res.done){
-			return res.value
-		}
-		//可能不是promise函数，可能是一个值，进行判断
-		if(res.value.then){
-			return res.value.then(result=>{
-				return go(it.next(result))
-			},error=>{
-				return go(it.error(error))
-			})
-		}else{
-			return go(it.next(res.value))
-		}
-	}
-	
-	go(it.next())
-}
-
-function test(a){
-	return new Promise(res=>{
-		setTimeout(res,1000,a)
-	})
-}
-
-function* func(){
-	console.log(yield test(1))
-	console.log(yield test(2))
-	console.log(yield 3)
-	console.log(yield test(4))
-}
-
-autoRun(func)
-// 1
-// 一秒过后，5
-// 3
-```
-上述代码等价于  
-```javascript
-async function func(){
-	console.log(await test(1))
-	console.log(await test(2))
-	console.log(await 3)
-	console.log(await test(4))
-}
-```
+（1）语法更简洁  
+（2）箭头函数不会创建this，this指向定义上下文的上一层  
+（3）call、bind、apply无法改变箭头函数的this指向  
+（4）箭头函数不能作为构造函数，(没有constructor)    
+（5）箭头函数自身没有arguments，如果上一层是函数，则会是函数的arguments  
+（6）箭头函数没有原型prototype，但是有__proto__，指向Function.prototype  
+（7）箭头函数不能用作Generator函数，但是可以用作async函数  
