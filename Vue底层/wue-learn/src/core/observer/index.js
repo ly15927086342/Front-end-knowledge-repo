@@ -26,9 +26,11 @@ let defineReactive = (obj, key, value) => {
         return
       }
       value = newVal
+      //通知更新
       dep.notify()
     },
     get () {
+      // 在compile中，调用vm.$watch会new一个Watcher
       if (Dep.target) {
         dep.addDepend()
       }

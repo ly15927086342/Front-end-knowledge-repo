@@ -1,8 +1,11 @@
 const path = require('path');
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+  mode:'development',
   entry:{
-    index: ['@babel/polyfill','./src/index.js'],
+    index: ['@babel/polyfill','./src/main.js'],
     // main:['@babel/polyfill','./src/main.js']
   },
   // entry:'./src/index.js',
@@ -18,5 +21,15 @@ module.exports = {
       loader: "babel-loader",
     }
     ]
-  }
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+  },
+  plugins: [
+  new CleanWebpackPlugin(),
+  new htmlWebpackPlugin({
+    template: './src/index.html',
+    filename: 'index.html'
+  })
+  ]
 };

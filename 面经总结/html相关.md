@@ -103,6 +103,8 @@ hash在地址栏输入是不会重新发请求的，但是history的话是会重
 
 15. 输入网址，回车之后的一系列过程描述？
 
+参考[https://zhuanlan.zhihu.com/p/38240894](https://zhuanlan.zhihu.com/p/38240894)
+
 首先浏览器判断有没有文件是强制缓存，且没有超时的，满足条件直接使用缓存文件；
 没有缓存则需要和服务器建立TCP连接，通过DNS，解析域名找IP，直到找到目标服务器的IP；  
 建立TCP连接（三次握手）；  
@@ -113,6 +115,8 @@ WebCore构建DOM和CSSOM，组合成一颗渲染树；
 遇到js会阻塞后面的资源下载，如果css在js后面，则渲染被阻塞；  
 js资源下载完立即执行（JSCore）；  
 直到页面渲染完毕。  
+
+![/static/imgs/网络传输流程.png](/static/imgs/网络传输流程.png)
 
 16. otherWindow.Postmessage()对页面的要求是，必须能够拿到窗口对象的引用，有以下四种：
 

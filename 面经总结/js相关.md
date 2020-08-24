@@ -419,8 +419,8 @@ setTimeout(() => { console.log(123) }, 2000);
 （2）使用then的第二个参数进行捕获（本质上也就是catch）因为catch(err=>{})等价于then(null,err=>{})
 
 Promise.all([p1,p2,p3]).then(res=>{})执行情况：  
-（1）三个都fulfilled，返回值组成数组，传给p的回调函数
-（2)有一个rejected，就返回第一rejected的返回值，给p的回调函数
+（1）三个都fulfilled，返回值组成数组，传给p的回调函数  
+（2)有一个rejected，就返回第一rejected的返回值，给p的回调函数  
 
 如果参数promise自己定义了catch，就不会触发p的回调函数
 
@@ -441,19 +441,21 @@ p
 .catch(console.error);
 ```
 
-Promise.allSettled([p1,p2,p3]).then(res=>{})执行情况：
+Promise.allSettled([p1,p2,p3]).then(res=>{})执行情况：  
 （1）所有promise都执行完，不管是fulfilled还是rejected，都会传入p的回调函数then
 
 该方法对比Promise.all()，优势在于可以确保所有promise都执行完毕，而all()方法只有全fulfilled才then，而一旦有一个rejected，就catch
 
-Promise.any([p1,p2,p3])执行情况：
+Promise.any([p1,p2,p3])执行情况：  
 （1）有一个promise状态改为了fulfilled就调用p的回调函数
 
 和Promise.race()区别就是race()只要状态改变就回调，any()只有状态改为fulfilled才回调
 
 44. 如何实现async/await？见[/js原理/重写async函数.js](/js原理/重写async函数.js)  
 
-官方的_asyncToGenerator函数如图：!(/static/imgs/asyncToGenerator.png)[/static/imgs/asyncToGenerator.png]
+官方的_asyncToGenerator函数如图：
+![/static/imgs/asyncToGenerator.png](/static/imgs/asyncToGenerator.png)  
+参考文章[https://hackernoon.com/async-await-generators-promises-51f1a6ceede2](https://hackernoon.com/async-await-generators-promises-51f1a6ceede2)
 
 45. 箭头函数和普通函数的区别？
 

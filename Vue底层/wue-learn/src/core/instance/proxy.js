@@ -5,10 +5,10 @@
 export default function proxy (target, sourceKey, key) {
   Object.defineProperty(target, key, {
     configurable: true,
-    get: function proxyGetter () {
+    get: function() {
       return target[sourceKey][key]
     },
-    set: function proxySetter (newVal) {
+    set: function(newVal) {
       target[sourceKey][key] = newVal
     }
   })
