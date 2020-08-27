@@ -420,7 +420,7 @@ setTimeout(() => { console.log(123) }, 2000);
 
 Promise.all([p1,p2,p3]).then(res=>{})执行情况：  
 （1）三个都fulfilled，返回值组成数组，传给p的回调函数  
-（2)有一个rejected，就返回第一rejected的返回值，给p的回调函数  
+（2）有一个rejected，就返回第一rejected的返回值，给p的回调函数  
 
 如果参数promise自己定义了catch，就不会触发p的回调函数
 
