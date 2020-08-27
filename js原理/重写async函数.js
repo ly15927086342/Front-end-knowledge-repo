@@ -6,28 +6,30 @@
 ////////////////////////////////////////////
 // 这段代码我认为比下面那段更好理解
 function autoRun(gen,arg){
-	const it = gen(arg)
-	//递归调用go
-	function go(res){
-		if(res.done){
-			//跳出迭代
-			return Promise.resolve(res.value)
-		}else{
-			//不管是不是异步代码，都用异步来执行
-			//如果是同步，则result是undefined
-			return Promise.resolve(res.value).then(result=>{
-				return go(it.next(result))
-			},error=>{
-				return go(it.throw(error))
-			})
+	return new Promise((resolve,reject)=>{
+		const it = gen(arg)
+		//递归调用go
+		function go(res){
+			if(res.done){
+				//跳出迭代
+				return resolve(res.value)
+			}else{
+				//不管是不是异步代码，都用异步来执行
+				//如果是同步，则result是undefined
+				return Promise.resolve(res.value).then(value=>{
+					return go(it.next(value))
+				},error=>{
+					return go(it.throw(error))
+				})
+			}
 		}
-	}
-	//在启动执行的时候，需要做一下异常捕获
-	try{
-		return go(it.next(undefined))
-	}catch(e){
-		return Promise.reject(e)
-	}
+		//在启动执行的时候，需要做一下异常捕获
+		try{
+			return go(it.next(undefined))
+		}catch(e){
+			return reject(e)
+		}
+	})
 }
 
 // generator函数，等价于await写法
