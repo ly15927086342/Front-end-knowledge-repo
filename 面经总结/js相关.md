@@ -63,7 +63,14 @@ new调用 > 显示调用 > 隐式调用 > 默认调用
 11. IIFE(立即执行函数表达式)  
 写法(function(...arg){})(arg1,..,argn)  
   
-12. var变量声明提升，至作用域顶端  
+12. ES6有六种变量声明的方法：var、function、 let、const、 class、import  
+其中，var和function声明的全局变量，会作为顶层对象（window）的属性，而let、const和import声明的全局变量，不属于顶层对象的属性。也就是说，从ES6开始，全局变量将逐步与顶层对象的属性脱钩。
+
+let、const和var的区别：  
+（1）var可以变量（声明）提升，但是let和const不行  
+（2）var可以重复声明，但是let和const不行  
+（3）var的作用域是全局作用域和函数作用域，而let和const是块级作用域  
+（4）块级作用域中let、const声明的变量，会出现“暂时性死区”，如果提前使用声明的变量，Cannot access 'a' before initialization，外层定义过该变量也会失效。  
   
 13. 三元表达式  
 表达式？A:B  
@@ -213,7 +220,57 @@ CommonJS require的变量是缓存，不能修改，而ES6模块变量值是动�
 29. ES6模块和CommonJS模块差异  
 1.CommonJS输出值拷贝，ES6输出值引用  
 2.CommonJS运行时加载，ES6编译时加载  
-  
+
+AMD和CMD的区别？  
+AMD 推崇依赖前置、提前执行，CMD推崇依赖就近、延迟执行。  
+
+AMD优缺点：
+
+优点：
+
+适合在浏览器环境中异步加载模块  
+可以并行加载多个模块   
+
+缺点：
+
+提高了开发成本，代码的阅读和书写比较困难，模块定义方式的语义不顺畅  
+不符合通用的模块化思维方式，是一种妥协的实现  
+
+CMD优缺点：
+
+优点：
+
+依赖就近，延迟执行  
+可以很容易在 Node.js 中运行  
+
+缺点：
+
+依赖 SPM 打包，模块的加载逻辑偏重  
+
+[https://juejin.im/post/6844903759009595405](https://juejin.im/post/6844903759009595405)
+
+```javascript
+/** AMD写法 **/
+define(["a", "b", "c", "d", "e", "f"], function(a, b, c, d, e, f) { 
+     // 等于在最前面声明并初始化了要用到的所有模块
+    a.doSomething();
+    if (false) {
+        // 即便没用到某个模块 b，但 b 还是提前执行了
+        b.doSomething()
+    }
+});
+
+/** CMD写法 **/
+define(function(require, exports, module) {
+    var a = require('./a'); // 在需要时申明
+    a.doSomething();
+    if (false) {
+        var b = require('./b');
+        b.doSomething();
+    }
+});
+```
+
 30. 排序方法（十大经典排序）  
 冒泡、选择、插入、希尔、归并、快排、堆、计数、桶、基数  
 详见<a href="/数据结构与算法/算法/排序">/数据结构与算法/算法/排序</a>  
@@ -466,3 +523,5 @@ Promise.any([p1,p2,p3])执行情况：
 （5）箭头函数自身没有arguments，如果上一层是函数，则会是函数的arguments  
 （6）箭头函数没有原型prototype，但是有__proto__，指向Function.prototype  
 （7）箭头函数不能用作Generator函数，但是可以用作async函数  
+
+46. 

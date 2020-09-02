@@ -31,9 +31,9 @@ load 是所有元素都加载完
 let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');  
 window.location.search.substr(1).match(reg) //返回数组  
 ```  
-6. 节流：短时间避免多次调用同一函数，适用多次请求  
+6. 节流：短时间避免多次调用同一函数，适用多次请求（降低事件的触发频率，例如计算滚动条位置、动画等）  
   
-7. 防抖：多次操作取最后一次之后定时执行，适用撤回、页面滚动  
+7. 防抖：多次操作取最后一次之后定时执行，（适用撤回、输入字符串匹配） 
   
 8. XSS攻击和CSRF攻击  
 XSS(Cross Site Scripting，跨站脚本攻击）插入Script脚本攻击，预防：1.不用innerHTML，用innerText2.对innerHTML做过滤  
@@ -55,6 +55,10 @@ CSRF(Cross-Site Request Forgery，跨站点请求伪造)预防：1.后台Http Re
 ```html  
 <header></header><footer></footer><main></main>  
 ```  
+
+作用：使用语义恰当的标签，使页面有良好的结构，让页面元素有含义，便于被浏览器、搜索引擎解析、利于SEO。
+
+html语义化标签包括body, article, nav, aside, section, header, footer, hgroup, 还有 h1-h6 address等
   
 11. defer和async  
 ```html  
