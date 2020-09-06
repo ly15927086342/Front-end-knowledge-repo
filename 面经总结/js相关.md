@@ -508,6 +508,19 @@ Promise.any([p1,p2,p3])执行情况：
 
 和Promise.race()区别就是race()只要状态改变就回调，any()只有状态改为fulfilled才回调
 
+`如果传入的空数组`：  
+all和allSettled会resolve([])  
+而race和any不会触发回调，一直处于pending状态
+
+总结如下：
+
+|Promise方法|作用|传参|传入空数组|
+|:--|:--|:--|:--|
+|all|所有promise都fulfilled或有一个rejected|数组|resolve([])|
+|allSettled|所有promise都改变状态|数组|resolve([])|
+|race|有一个promise改变状态|值|pending|
+|any|有一个promise改为fulfilled|值|pending|
+
 44. 如何实现async/await？见[/js原理/重写async函数.js](/js原理/重写async函数.js)  
 
 官方的_asyncToGenerator函数如图：

@@ -120,6 +120,9 @@ class myPromise{
 		let count = 0
 		let result = []
 		return new myPromise((resolve,reject)=>{
+			if(promiseArr.length==0){
+				resolve([])
+			}
 			promiseArr.forEach((p,i)=>{
 				// p可能不是promise，所以要用resolve处理
 				myPromise.resolve(p).then(val => {
@@ -151,6 +154,9 @@ class myPromise{
 		let count = 0
 		let result = []
 		return new myPromise((resolve,reject)=>{
+			if(promiseArr.length==0){
+				resolve([])
+			}
 			promiseArr.forEach((p,i)=>{
 				// p可能不是promise，所以要用resolve处理
 				myPromise.resolve(p).then(val => {
