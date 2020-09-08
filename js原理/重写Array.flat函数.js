@@ -5,21 +5,25 @@
 ** 例如：[1,,,2,,,[1,2,3]].flat(1) => [1,2,1,2,3]
 */
 
-Array.prototype.newFlat = function(depth) {
-	let num = depth === undefined ? 1 : depth;
-	if (!num || Number(num) <= 0) {
-		return this;
-	}
-	let arr = [];
-	//这里必须用for循环，如果用empty，会自动跳过
-	for(let i=0;i<this.length;i++){
-		let item = this[i]
-		if(!item) continue
-		if (Array.isArray(item)) {
-			arr = arr.concat(item.newFlat(num-1));
-		} else {
-			arr.push(item);
-		}
-	}
-	return arr;
+Array.prototype.newFlat = function(depth = 1) {
+	return depth > 0 ? 
+	this.reduce((res,cur)=>res.concat(Array.isArray(cur)?cur.newFlat(depth-1):cur),[])
+	:
+	this.filter(item=>item)//过滤空值
 };
+
+// 如果是把数组完全拍平，写法如下
+function arrayFlatten(arr){
+	return arr.reduce((res,item)=>res.concat(Array.isArray(item)?arrayFlatten(item):item),[])
+}
+
+// 数组深度
+function arrDeep(arr){
+	let res = 1
+	arr.forEach(item=>{
+		if(Array.isArray(item)){
+			res = Math.max(res,res+arrDeep(item))
+		}
+	})
+	return res
+}

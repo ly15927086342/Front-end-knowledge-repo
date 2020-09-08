@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		table.calendar {
+			font-size: 14px;
+			border-collapse: collapse;
+			width: 100%;
+			table-layout: fixed;
+		}
+
+		table.calendar th{
+			background: #f5f5f5;
+			color: #999;
+		}
+		table.calendar th,
+		table.calendar td {
+			border: 1px solid #e1e1e1;
+			padding: 0;
+			height: 32px;
+			line-height: 32px;
+			text-align: center;
+		}
+
+		table.calendar td.current{
+			background: #1890ff;
+			color: #fff;
+		}
+
+		table.calendar th.pre,
+		table.calendar th.next{
+			color: #1890ff;
+			cursor: pointer;
+		}
+		table.calendar th.date{
+			color: #000;
+		}
+	</style>
+</head>
+<body>
+	<div id="jsContainer">
+		<table class="calendar">
+		</table>
+	</div>
+</body>
+<script type="text/javascript">
+	let el = document.getElementById('jsContainer')
+	Calendar(el,2020,9)
+	function Calendar(container, year, month) {
+		this.year = year;
+		this.month = month;
+		this.html = html;
+        this.el = null; 
+        //TODO: 创建分页组件根节点
+        this.el = document.createElement('table')
+        if (!el) return;
+        this.el.className = 'calendar';
+        this.el.innerHTML = this.html();
+        container.appendChild(this.el);
+
+        this.el.addEventListener('click', event => {
+            var el = event.target;
+            var isPre = el.classList.contains('pre');
+            var isNext = el.classList.contains('next');
+            if (!isPre && !isNext) return;
+            if (isPre) {
+                //TODO: 更新this.month和this.year
+                if(this.month==1){
+                    this.year--
+                    this.month = 12
+                }else{
+                    this.month--
+                }
+            } else {
+                //TODO: 更新this.month和this.year
+                if(this.month==12){
+                    this.year++
+                    this.month = 1
+                }else{
+                    this.month++
+                }
+            }
+            this.el.innerHTML = this.html();
+        });
+
+        function html() {
+            var date = new Date();
+            var year = +this.year || 0;
+            var month = (+this.month || 0);
+            var day = date.getDate();
+            //TODO: 生成组件的内部html字符串
+            let today = 0
+            if(date.getFullYear()==year && month==date.getMonth()+1){
+                today = day
+            }
+
+            let one = new Date(year+'-'+month+'-'+'1').getDay()
+            one = one==0?6:one-1
+            let mon = [31,28,31,30,31,30,31,31,30,31,30,31]
+            let days = mon[month-1]
+            if(month==2){
+                if(year%4==0&&year%100!=0){
+                    days=29
+                }
+            }
+            // td内的字符串
+            let ooo = []
+            let cur = 1
+            while(days>=7){
+                ooo.push([])
+                if(one>0){
+                    for(let i=0;i<one;i++){
+                        ooo[ooo.length-1][i] = ''
+                    }
+                }
+                for(let i=one;i<7;i++){
+                    ooo[ooo.length-1][i] = cur
+                    cur++
+                    days--
+                }
+                one = 0
+            }
+            if(days>0){
+                ooo.push([])
+                for(let i=0;i<days;i++){
+                    ooo[ooo.length-1][i] = cur
+                    cur++
+                }
+            }
+            while(ooo[ooo.length-1].length<7){
+                ooo[ooo.length-1].push('')
+            }
+            month = month<10?'0'+month:month
+            //表头
+            let res = 
+            `<thead>
+            <tr><th class="pre"><</th><th colspan="5" class="date">${year}.${month}</th><th class="next">></th></tr>
+            <tr><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
+            </thead>`
+            //日历内容
+            res+='<tbody>'
+            for(let row = 0;row<ooo.length;row++){
+                res+='<tr>'
+                for(let d=0;d<ooo[row].length;d++){
+                    if(today>0&&today==ooo[row][d]){
+                        res+=`<td class='current'>${ooo[row][d]}</td>`
+                    }else{
+                        res+=`<td>${ooo[row][d]}</td>`
+                    }        		
+                }
+                res+='</tr>'
+            }
+            res+='</tbody>'
+            return res
+        }
+    }
+</script>
+</html>

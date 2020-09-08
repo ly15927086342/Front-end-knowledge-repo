@@ -12,7 +12,7 @@ function quick_sort(arr,start,end){
 	}
 	while(left < right){
 		// 等号很关键，少了等号直接死循环
-		// 因为如何arr[left]==arr[right]，会陷入循环
+		// 因为如果arr[left]==arr[right]，会陷入循环
 		// 只要有一个等号即可，两个等号也行
 		if(left < right && key <= arr[right]){
 			right--
