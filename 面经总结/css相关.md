@@ -140,5 +140,10 @@ padding:只能大于等于0
 18. inline-block和inline和block区别？
 
 inline:行内元素  
-block:块级元素
+block:块级元素  
 inline-block:有块级属性的行内元素，区别在于width和height有效，margin\padding和border在垂直方向上也会推开其他元素。
+
+19. flex属性，是哪几个属性合并而成的？
+`flex-grow`：
+`flex-shrink`：
+`flex-basis`：
