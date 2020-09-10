@@ -143,7 +143,21 @@ inline:行内元素
 block:块级元素  
 inline-block:有块级属性的行内元素，区别在于width和height有效，margin\padding和border在垂直方向上也会推开其他元素。
 
-19. flex属性，是哪几个属性合并而成的？
-`flex-grow`：
-`flex-shrink`：
-`flex-basis`：
+19. flex属性，是哪几个属性合并而成的？  
+`flex-grow`：扩展比例
+`flex-shrink`：收缩比例
+`flex-basis`：基准长度
+
+20. css的height、max-height、min-height优先级
+
+见[/css/height_maxheight_minheight.html](/css/height_maxheight_minheight.html)
+
+width、min-width、max-width优先级同理，见[/css/width_minwidth_maxwidth.html](/css/width_minwidth_maxwidth.html)
+
+21. 响应式布局解决方案
+
+1. 媒体查询（Media Query）
+2. 百分比布局
+3. rem字体
+4. 视口单位（vw\vh）
+5. 图片响应（srcset）

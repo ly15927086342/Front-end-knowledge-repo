@@ -1,0 +1,132 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>max-height、 min-height、 height 一起使用</title>
+    <style>
+        ul{
+            list-style:none;
+            padding:0;
+        }
+        .fl {
+            float:left;
+            display:inline;
+        }
+        .fr {
+            float:right;
+        }
+        .wrap{
+            width:200px;
+            margin-left:20px;
+        }
+        .box{
+            height:500px;
+            min-height: 300px;
+            background-color:#e64c65;
+        }
+        .box2{
+            height:500px;
+            max-height:300px;
+            background-color:rgb(169, 173, 233);
+        }
+        .box3{
+            height:600px;
+            max-height:500px;
+            min-height: 300px;
+            background-color:rgb(199, 69, 166);
+        }
+        .box4{
+            height:200px;
+            max-height:500px;
+            min-height:300px;
+            background-color:#ccc;
+        }
+
+        .box5{
+            height:200px;
+            max-height:300px;
+            min-height:400px;
+            background-color:#ccc;
+        }
+
+        .box6{
+            height:500px;
+            max-height:300px;
+            min-height:600px;
+            background-color:#ccc;
+        }
+
+        .box7{
+            height:600px;
+            max-height:300px;
+            min-height:500px;
+            background-color:#ccc;
+        }
+        
+    </style>
+</head>
+<body>
+    <div style="width: 150%;overflow-x: auto;">
+        <div class="box wrap fl">
+            <ul>
+                <li>原：height:500</li>
+                <li>原：min-height:300</li>
+                <li>实：height:500</li>
+                <li>height > minheight : height</li>
+            </ul>
+        </div>
+        <div class="box2 wrap fl">
+            <ul>
+                <li>原：height:500</li>
+                <li>原：max-height:300</li>
+                <li>实：height:300</li>
+                <li>height > maxheight : maxheight</li>
+            </ul>
+        </div>
+        <div class="box3 wrap fl">
+            <ul>
+                <li>原：height:600</li>
+                <li>原：max-height:500</li>
+                <li>原：min-height:300</li>
+                <li>实：height:500</li>
+                <li>minheight < maxheight < height : maxheight</li>
+            </ul>
+        </div>
+        <div class="box4 wrap fl">
+            <ul>
+                <li>原：height:200</li>
+                <li>原：max-height:500</li>
+                <li>原：min-height:300</li>
+                <li>实：height:300</li>
+                <li>height < minheight < maxheight : minhegiht</li>
+            </ul>
+        </div>
+        <div class="box5 wrap fl">
+            <ul>
+                <li>原：height:200</li>
+                <li>原：max-height:300</li>
+                <li>原：min-height:400</li>
+                <li>实：height:400</li>
+                <li>height < maxheight < minheight : minheight</li>
+            </ul>
+        </div>
+        <div class="box6 wrap fl">
+            <ul>
+                <li>原：height:500</li>
+                <li>原：max-height:300</li>
+                <li>原：min-height:600</li>
+                <li>实：height:600</li>
+                <li>maxheight < height < minheight : minheight</li>
+            </ul>
+        </div>
+        <div class="box7 wrap fl">
+            <ul>
+                <li>原：height:600</li>
+                <li>原：max-height:300</li>
+                <li>原：min-height:500</li>
+                <li>实：height:500</li>
+                <li>maxheight < height < minheight : minheight</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
