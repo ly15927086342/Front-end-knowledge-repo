@@ -205,7 +205,7 @@ ES6 class中的方法不可枚举 Object.keys(ClassA)为[]
 ES5 可枚举  
   
 28. 模块加载  
-CommonJS 服务器   
+CommonJS 服务器  
 AMD 浏览器  
 被ES6模块取代，编译时确定依赖关系  
 ES6模块不是对象，通过export显式指定输出代码 import导入  

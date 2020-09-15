@@ -122,7 +122,7 @@ js资源下载完立即执行（JSCore）；
 
 ![/static/imgs/网络传输流程.png](/static/imgs/网络传输流程.png)
 
-16. otherWindow.Postmessage()对页面的要求是，必须能够拿到窗口对象的引用，有以下四种：
+16. otherWindow.postMessage(message,targetOrigin)对页面的要求是，必须能够拿到窗口对象的引用，有以下四种：
 
 otherWindow是window对象的引用：
 
@@ -131,11 +131,23 @@ otherWindow是window对象的引用：
 （3）window.parent  
 （4）window.frames  
 
+message(Object):要传输的数据对象  
+targetOrigin(String):目标origin
+
+接受消息用的是window.addEventListener(message,receiveMessage,getSource)
+
+message(Object):接收的data对象，无需序列化  
+receiveMessage(Function):回调函数，参数是event，包含origin、source等属性  
+getSource(Boolean):是否接收source（原窗口对象的引用）
 
 17. XSS跨站点脚本攻击
 
+本质是用户无意中执行了攻击脚本
 
+解决方案：对于一些插入dom节点的文本做过滤、转义处理。例如appendChild()、document.write()
 
 18. CSRF跨站点请求伪造
 
+本质是同域的情况下获取了用户身份标识（主要是cookie），并伪造成用户发出请求，获得数据
 
+解决方案：后端可以检查Referer（有些情况下referer也可以被修改）；也可以通过token来验证用户身份，例如后端生成一个随机数，通过加密，传给前端，前端在每一个请求参数中加入该字符串，或者用自定义的响应头，发送给后端进行验证，验证通过表明是正常用户。

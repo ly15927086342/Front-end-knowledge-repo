@@ -161,3 +161,8 @@ width、min-width、max-width优先级同理，见[/css/width_minwidth_maxwidth.
 3. rem字体
 4. 视口单位（vw\vh）
 5. 图片响应（srcset）
+
+22. visibility:hidden和display:none区别
+（1）display:none，子元素无法显示（非继承）；但是visibility子元素如果设置了visiable，还是可见的（继承属性）
+（2）display不占空间（不出现在渲染树中），和节点不存在效果一致；visibility占空间（出现在渲染树中）
+（3）visibility:hidden只会重绘；display:none会回流重绘
