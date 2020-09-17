@@ -537,4 +537,11 @@ all和allSettled会resolve([])
 （6）箭头函数没有原型prototype，但是有__proto__，指向Function.prototype  
 （7）箭头函数不能用作Generator函数，但是可以用作async函数  
 
-46. 
+46. Array的indexOf和Set的has时间复杂度分别是多少？
+
+indexOf: O(N)  
+has: O(1)  
+
+Set的add也比Array的push方法效率高
+
+[重写Set和Map](https://juejin.im/post/6844903589920374792)

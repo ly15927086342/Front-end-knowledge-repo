@@ -23,7 +23,7 @@ class myPromise{
 					this._status = STATUS.FULFILLED
 					this._value = value
 
-					//resolve回调(then)
+					//resolve回调(then)队列依次弹出回调函数并执行
 					while(this._resolveQueue.length){
 						const callback = this._resolveQueue.shift()
 						callback(value)
@@ -64,6 +64,7 @@ class myPromise{
 			const resolveFn = value => {
 				try{
 					const x = onFulfilled(value)
+					// 若onFulfilled回调函数本身返回Promise，则直接调用then，否则直接resolve
 					x instanceof myPromise ? x.then(resolve,reject) : resolve(x)
 				}catch(error){
 					reject(error)
@@ -80,13 +81,16 @@ class myPromise{
 			}
 
 			switch(this._status){
+				// 在一次事件循环中，如果then直接跟在new Promise()后，则由于使用的setTimeout，内部的run函数还未执行，此时status为pending
 				case STATUS.PENDING:
 				this._resolveQueue.push(resolveFn)
 				this._rejectQueue.push(rejectFn)
 				break
+				// 若不在同一次事件循环，即setTimeout之后调用then，则此时status状态已经不是pending，但是依然可以直接返回resolve中的值
 				case STATUS.FULFILLED:
 				resolveFn(this._value)
 				break
+				// 同fulfilled
 				case STATUS.REJECTED:
 				rejectFn(this._value)
 				break
@@ -107,7 +111,6 @@ class myPromise{
 	}
 
 	// 静态方法
-
 	static resolve(value){
 		return value instanceof myPromise ? value : new myPromise(resolve => resolve(value))
 	}

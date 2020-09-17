@@ -125,4 +125,34 @@ console.log(calculateBonus('S',2000))//8000
 
 ### 代理模式
 
-`定义`：
+`定义`：为一个对象提供一个替代品或占位符，以便控制对它的访问。
+
+`应用场景`：图片预加载（图片下载完之前用本地文件替代）、
+
+```javascript
+// 本体
+var myImage = (function(){
+	let imgNode = document.createElement('img')
+	document.body.appendChild(imgNode)
+
+	return function(src){
+		imgNode.src = src
+	}
+})()
+
+// 代理
+var proxyImage = (function(){
+	let img = new Image()
+	img.onload = function(){
+		myImage(this.src)
+	}
+
+	return function(src){
+		myImage(src)
+		img.src = src
+	}
+})()
+```
+
+**要保证代理和本体接口的一致性。代理和本体要符合单一职责原则（即各自拥有独立的功能）和开放-封闭原则（扩展开放，修改封闭，即本体不做改动，只对代理进行扩展）。**
+
