@@ -35,10 +35,12 @@ class EventEmitter {
         this.queue = {} //可触发多次的事件 
         this.onceQueue = {} //只能触发一次的事件
     }
+    //订阅
     on(event, fn) {  //监听事件，可以触发多次 
     	if (!this.queue[event]) this.queue[event] = []
     		this.queue[event].push(fn)
     }
+    //订阅一次
     once(event, fn) {   //监听事件，只能触发一次 
     	if (!this.onceQueue[event]) {
     		this.onceQueue[event] = {
@@ -48,6 +50,7 @@ class EventEmitter {
     	}
     	this.onceQueue[event].fns.push(fn)
     }
+    //发布
     fire() {  //触发指定的事件 
         const event = [].shift.call(arguments), //取得事件名称
         fns = this.queue[event],  //取得该事件里所有的回调函数（可以触发多次的事件）
@@ -66,6 +69,7 @@ class EventEmitter {
             this.onceQueue[event].hasFired = true
         }
     }
+    // 注销
     // fn有函数名时可以筛选出，但是没有名称不行
     off(event, fn = null) { //可移除特定事件里的某个回调函数或者所有回调函数 
     	const fns = this.queue[event]

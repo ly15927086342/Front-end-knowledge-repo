@@ -127,7 +127,7 @@ console.log(calculateBonus('S',2000))//8000
 
 `定义`：为一个对象提供一个替代品或占位符，以便控制对它的访问。
 
-`应用场景`：图片预加载（图片下载完之前用本地文件替代）、
+`应用场景`：图片预加载（图片下载完之前用本地文件替代）、虚拟代理（例如合并HTTP请求，统一发送，即节流）、缓存代理（例如计算器缓存之前的计算结果）
 
 ```javascript
 // 本体
@@ -155,4 +155,70 @@ var proxyImage = (function(){
 ```
 
 **要保证代理和本体接口的一致性。代理和本体要符合单一职责原则（即各自拥有独立的功能）和开放-封闭原则（扩展开放，修改封闭，即本体不做改动，只对代理进行扩展）。**
+
+### 迭代器模式
+
+`定义`：提供一种方法顺序访问一个聚合对象中的各个元素，而不需要暴露该对象的内部表示。
+
+```javascript
+// 内部迭代器
+function each(arr,callback){
+	for(let i=0;i<arr.length;i++){
+		callback.call(arr[i],i,arr[i])
+	}
+}
+
+each([1,2,3],function(key,val){
+	console.log(key,val)
+})
+```
+
+```javascript
+// 外部迭代器
+function Iterator(arr){
+	var current = 0
+	var isDone = function(){
+		return current>=arr.length
+	}
+	var next = function(){
+		current++
+	}
+	var getCurrent = function(){
+		return arr[current]
+	}
+	return {
+		next,
+		isDone,
+		getCurrent
+	}
+}
+
+var iter = Iterator([1,2,3])
+while(!iter.isDone()){
+	console.log(iter.getCurrent())
+	iter.next()
+}
+```
+
+`核心思想`：迭代过程中对当前对象进行判断，可控地中止迭代并返回结果
+
+### 发布-订阅模式
+
+`定义`：又叫观察者模式，定义对象间一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在js开发中，我们一般用事件模型来替代传统的发布-订阅模式。
+
+`优势`：
+1. 可以应用在异步编程中，这是一种可替代回调函数的方案（时间解耦）
+2. 可以取代对象之间的硬编码的通知机制，一个对象不再显式地调用另一个对象的某个接口（对象解耦）
+
+`缺点`：
+1. 创建订阅者本身消耗时间和内存，且可能消息都没发生
+2. 对象间的必要联系弱化，程序难以跟踪维护和理解
+
+`场景`：
+1. DOM事件
+2. 自定义事件
+
+`示例`：[/js原理/发布订阅模式.js](/js原理/发布订阅模式.js)
+
+### 命令模式
 

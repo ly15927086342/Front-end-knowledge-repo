@@ -10,7 +10,18 @@
 		<li>css不会阻塞dom的解析，但会阻塞dom的渲染</li>
 		<li>js不会阻塞后面css的下载和解析</li>
 		<li>js会阻塞dom的解析和渲染</li>
+		<li>dom解析遇到行内script或head内的script，不会触发一次paint，也就是会阻塞dom的解析和渲染</li>
+		<li>dom解析遇到外链script标签，会触发一次paint，然后再下载执行js，然后再继续解析</li>
+		<li>defer、async只对外链script有效</li>
 	</ul>
+	<script type="text/javascript" src="test.js"></script>
+	<!-- <script type="text/javascript" defer>
+		console.log(Date.now());
+		for (let i=0; i<2000000000; i++) {
+			let a = i;
+		}
+		console.log(Date.now());
+	</script> -->
 	<a href="http://taligarsiel.com/Projects/howbrowserswork1.htm#The_order_of_processing_scripts_and_style_sheets">英文讲解</a>
 	<div id="test">nihao</div>
 </body>	
@@ -18,12 +29,13 @@
 	let node = document.getElementById('test')
 	node.style.color = 'blue'
 </script>
-<style type="text/css">
+<!-- <style type="text/css">
 	#test{
 		color: black
 	}
-</style>
-<script type="text/javascript">
+</style> -->
+
+<!-- <script type="text/javascript">
 	let node2 = document.getElementById('test')
 	node2.style.color = 'red'
 </script>
@@ -31,5 +43,5 @@
 	#test{
 		color: green
 	}
-</style>
+</style> -->
 </html>
