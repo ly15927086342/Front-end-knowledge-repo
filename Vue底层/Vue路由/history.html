@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	function Route(){
+    	this.routes = {};// 存放路由path及callback
+
+    	window.addEventListener('popState', this.refresh)
+    }
+
+    Route.prototype.refresh = function(path){
+    	console.log('dom has refresh');
+    }
+	// 事件和路由绑定
+	Route.prototype.route = function(path, callback){
+		this.routes[path] = callback;
+	}
+
+	Route.prototype.replace = function (path) {
+    	//更新视图
+    	history.replaceState({path: path}, null, path);
+    	this.routes[path] && this.routes[path]();
+    }
+    Route.prototype.push = function (path) {
+    	//更新视图
+    	history.pushState({path: path}, null, path);
+    	this.routes[path] && this.routes[path]();
+    }
+
+    var myRouter = new Route();
+
+	// 定义路由事件
+	myRouter.route('/my', () => {
+		console.log('page1');
+	})
+	myRouter.route('/detail', () => {
+		console.log('page2');
+	})
+
+	// 使用路由
+	myRouter.push('/detail')
+</script>
+</html>

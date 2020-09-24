@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	/**
+	 * hash 模式
+	 */
+	 function Route(){
+	    this.routes = {};// 存放路由path及callback
+	    this.currentUrl = '';
+
+	    window.addEventListener('hashchange', this.refresh);
+	}
+
+	// 切换路由后执行
+	Route.prototype.refresh = function(){
+		console.log(location.hash +' dom is refresh')
+	}
+	// 事件和路由绑定
+	Route.prototype.route = function(path, callback){
+		this.routes[path] = callback;
+	}
+	// 执行事件
+	Route.prototype.push = function(path){
+	    //更新视图 dosomething
+	    location.hash = path;
+	    this.currentUrl = location.hash.slice(1) || '/';
+	    this.routes[this.currentUrl] && this.routes[this.currentUrl]();
+	}
+
+	Route.prototype.replace = function(path){
+	    //更新视图 dosomething
+	    const i = location.href.indexOf('#');
+	    location.replace(location.href.slice(0, i >= 0 ? i : 0) + '#' + path);
+	    this.routes[path] && this.routes[path]();
+	}
+
+	var myRouter = new Route();
+
+	// 定义路由事件
+	myRouter.route('my', () => {
+		console.log('page1');
+	})
+	myRouter.route('home', () => {
+		console.log('page2');
+	})
+
+	// 使用路由
+	myRouter.push('my');
+	myRouter.replace('home');
+</script>
+</html>
