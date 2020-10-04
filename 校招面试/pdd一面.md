@@ -15,9 +15,9 @@
 5. D3的enter和exit含义（不知道）
 6. git的reset revert rebase含义
 
-reset:撤销之前的commit
-revert:通过提交新的commit来达到撤销之前commit的效果
-rebase:合并commit为新的commit
+reset:撤销之前的commit  
+revert:通过提交新的commit来达到撤销之前commit的效果  
+rebase:合并commit为新的commit  
 
 7. css transform作用，平移旋转缩放
 8. flex: 0 1 auto含义，分开解释

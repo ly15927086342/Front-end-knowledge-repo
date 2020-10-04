@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			padding: 0;
+			margin: 0;
+		}
+		.father{
+			width: 100%;
+			padding: 20px;
+			box-sizing: border-box;
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		.son{
+			width: calc(100% /2 - 10px);
+			height: 200px;
+			background-color: green;
+			margin-bottom: 20px;
+		}
+		.son:nth-child(odd){
+			margin-right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<p>卡片布局的基本策略：父容器的盒模型设置为border-box；子卡片的width根据卡片数设置为calc(100%/n - 卡片间距)；然后给卡片设置伪类:nth-child()，设置一个右边距。</p>
+	<div class="father">
+		<div class="son"></div>
+		<div class="son"></div>
+		<div class="son"></div>
+	</div>
+</body>
+</html>

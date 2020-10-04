@@ -176,6 +176,8 @@ then:3
 20. Node.js特点 1.单线程（主线程） 2.异步/非阻塞I/O 3.事件驱动和回调函数 4.child-process子进程和H5的WebWorker类似  
   
 21. Proxy对象代理，有13种属性，get\set\defineProperty\has\ownkeys\apply\construct...可以触发代理  
+
+`Proxy只能监听一层，如果对象属性还是对象，则需要继续代理`
   
 22. Reflect 与Proxy对象的方法一一对应，提供进一步操作空间  
 把属于内部属性的方法从Object对象提取出，set如果不传receiver，不会触发defineProperty拦截  
@@ -545,3 +547,29 @@ has: O(1)
 Set的add也比Array的push方法效率高
 
 [重写Set和Map](https://juejin.im/post/6844903589920374792)
+
+47. LHS和RHS
+
+LHS(Left Hand Side)：查找的目的是对变量进行赋值
+
+RHS(Right Hand Side)：目的是获取变量的值
+
+LHS和RHS都会在当前执行作用域中开始，如果没找到，会往上级作用域继续查找，最后抵达全局作用域。
+
+```javascript
+function foo(a){
+	var b = a;
+	return a + b;
+}
+var c = foo(2);
+// 3处LHS
+// c = ...;a = 2(隐式赋值); b = a;
+// 4处RHS
+// foo(2);...a;a...;...b;
+```
+
+48. ReferenceError和TypeError
+
+ReferenceError:代表当一个不存在的变量被引用时发生的错误。
+
+TypeError:表示值的类型非预期类型时发生的错误。
