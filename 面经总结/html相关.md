@@ -50,6 +50,8 @@ CSRF(Cross-Site Request Forgery，跨站点请求伪造)预防：1.后台Http Re
 位置原则：CSS优先，JS置后  
 解析html会把新节点插入DOM树，同时查CSS规则，从右往左查  
 渲染树内所有节点可见  
+
+[https://blog.fundebug.com/2019/01/03/understand-browser-rendering/](https://blog.fundebug.com/2019/01/03/understand-browser-rendering/)
   
 10. html标签化，就是标签有语义，如  
 ```html  
