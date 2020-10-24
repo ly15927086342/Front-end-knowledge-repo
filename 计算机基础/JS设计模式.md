@@ -222,3 +222,167 @@ while(!iter.isDone()){
 
 ### 命令模式
 
+`定义`：命令模式的命令（command）指的是一个执行某些特定事情的指令。
+
+`场景`：发送者和接收者的弱耦合关系，如餐厅的客人和厨师之间是弱耦合，彼此不知道对方是谁，通过订单（命令），维系彼此的关系。此外，命令模式还支持撤销、排队等操作。
+
+`基本模式`：命令对象接收一个receiver对象，在execute方法内调用receiver的方法；用一个方法(setCommand)接收发送者对象和命令对象，在方法内部，发送者的发送事件的回调函数调用命令对象的execute方法。
+
+`example`：
+```javascript
+// sender
+var button1 = document.getElementById( 'button1' );
+
+// 保存命令的堆栈
+var commandStack = [];
+
+// receiver
+var MenuBar = {
+	refresh: function(){
+		console.log( '刷新菜单界面' );
+	}
+};
+
+// 用于包装sender和command
+var setCommand = function(button, command){
+	button.onclick = function(){
+		command.execute();
+		commandStack.push(command);
+	}
+}
+
+// 用于返回commond对象，处理receiver
+var RefreshMenuBarCommand = function(receiver){
+	return {
+		// 执行命令
+		execute:function(){
+			receiver.refresh()
+		},
+		// 撤销命令
+		undo:function(){
+			// to do ...
+		}
+	}
+}
+
+// command对象
+var refreshMenuBarCommand = RefreshMenuBarCommand(MenuBar);
+setCommand(button1, refreshMenuBarCommand);
+
+// 重做
+var command;
+while( command = commandStack.shift() ){ // 从堆栈里依次取出命令并执行
+	command.execute();
+}
+```
+
+`撤销`：缓存上一步的命令对象，调用命令对象的undo方法
+
+`重做`：利用命令堆栈存储历史命令，然后依次执行命令
+
+`宏命令`：一组命令的集合，通过执行宏命令，可以一次执行一批命令。（比如github actions，其实就是一个宏命令：workflow）
+
+如何控制宏命令前一个结束再执行后一个？
+
+1可以用自动执行的生成器generator函数，本质就是写一个async/await。
+
+2可以用发布-订阅模式来实现，前一个命令结束后通知后一个命令执行，即每次调用队首的命令对象执行。
+
+### 组合模式
+
+`定义`：用小的子对象构建更大的对象，而这些小的子对象也是由更小的孙对象构成。
+
+`何时使用组合模式？`：
+
+1表示对象的部分-整体层次结构。
+
+2客户希望统一对待树中的所有对象。
+
+`缺点`：
+
+1系统中每个对象看起来和其他对象都差不多，区别只有在运行时才会显现。
+
+2创建太多对象，会让系统负担不起。
+
+`注意点`：
+
+1组合模式不是父子关系。父子节点能合作的关键在于又相同的接口
+
+2对叶对象操作的一致性。
+
+3双向映射关系。
+
+4用职责链模式提高组合模式性能。
+
+`example`
+
+```javascript
+// 文件系统
+
+// Folder
+var Folder = function(name){
+	this.name = name;
+	this.parent = null;
+	this.files = [];
+}
+// 添加文件
+Folder.prototype.add = function(file){
+	file.parent = this; //设置父对象
+	this.files.push( file );
+}
+// 扫描文件
+Folder.prototype.scan = function(){
+	console.log( '开始扫描文件夹: ' + this.name );
+	for ( var i = 0, file, files = this.files; file = files[ i++ ]; ){
+		file.scan();
+	}
+};
+// 移除文件
+Folder.prototype.remove = function(){
+	if ( !this.parent ){ //根节点或者树外的游离节点
+		return;
+	}
+	for ( var files = this.parent.files, l = files.length - 1; l >=0; l-- ){
+		var file = files[ l ];
+		if ( file === this ){
+			files.splice( l, 1 );
+		}
+	}
+};
+
+// File，类似
+var File = function( name ){
+	this.name = name;
+	this.parent = null;
+};
+File.prototype.add = function(){
+	throw new Error( '不能添加在文件下面' );
+};
+File.prototype.scan = function(){
+	console.log( '开始扫描文件: ' + this.name );
+};
+File.prototype.remove = function(){
+	if ( !this.parent ){ //根节点或者树外的游离节点
+		return;
+	}
+	for ( var files = this.parent.files, l = files.length - 1; l >=0; l-- ){
+		var file = files[ l ];
+		if ( file === this ){
+			files.splice( l, 1 );
+		}
+	}
+};
+
+// test
+var folder = new Folder( '学习资料' );
+var folder1 = new Folder( 'JavaScript' );
+var file1 = new Folder ( '深入浅出Node.js' );
+
+folder1.add( new File( 'JavaScript 设计模式与开发实践' ) );
+folder.add( folder1 );
+folder.add( file1 );
+folder.scan();
+folder1.remove(); //移除文件夹
+folder.scan();
+```
+
