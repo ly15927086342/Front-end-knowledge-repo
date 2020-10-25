@@ -386,3 +386,86 @@ folder1.remove(); //移除文件夹
 folder.scan();
 ```
 
+### 模板方法模式
+
+`定义`：模板方法是一种只需要使用继承就可以实现的非常简单的模式。
+
+`组分`：抽象父类+具体的实现子类。子类实现或重写不同的算法，父类实现相同的算法框架（模板）。
+
+`抽象类`：不能实例化，只能用来继承
+
+`抽象方法和具体方法`：抽象方法不定义具体内容，只用于构造执行顺序；具体方法重写抽象方法。
+
+`javascript没有抽象类的缺点和解决方案`：
+
+缺点：无法保证子类重写父类的抽象方法
+
+解决方案：
+
+1用鸭子类型来模拟接口检查。但在业务代码中添加了和业务逻辑无关的代码。
+
+2让父类的抽象方法直接抛出异常。但得到的错误信息时间点太靠后，只能在程序运行过程中才知道哪里发生错误。
+
+`使用场景`：
+
+1搭建项目的框架（HttpServlet生命周期）
+
+2构建UI组件（初始化div容器=》ajax拉取相应数据=》数据渲染到div容器=》通知用户组件渲染完毕）
+
+`好莱坞原则`：指底层组件将自己挂钩到高层组件中，但是高层组件会决定什么时候、以何种方式去使用这些底层组件。
+
+好莱坞原则的使用场景包括：模板方法模式、发布-订阅模式、回调函数。
+
+`一定要使用继承么？`
+
+可以将子类以对象的形式传入抽象类函数，子类方法存在则执行子类方法，否则执行抽象类方法。
+
+`example`
+
+```javascript
+// 抽象类
+var Beverage = function(){};
+Beverage.prototype.boilWater = function(){
+	console.log('把水煮沸')
+}
+Beverage.prototype.brew = function(){
+	throw new Error('子类必须重写brew方法')
+}
+Beverage.prototype.pourInCup = function(){
+	throw new Error('子类必须重写pourInCup方法')
+}
+Beverage.prototype.addCondiments = function(){
+	throw new Error('子类必须重写addCondiments方法')
+}
+// hook函数
+Beverage.prototype.customerWantsCondiments = function(){
+	return true; //默认需要调料
+}
+Beverage.prototype.init = function(){
+	this.boilWater();
+	this.brew();
+	this.pourInCup();
+	if(this.customerWantsCondiments()){
+		this.addCondiments();
+	}
+}
+
+//子类
+var CoffeeWithHook = function(){};
+CoffeeWithHook.prototype = new Beverage();//继承抽象类
+CoffeeWithHook.prototype.brew = function(){
+	console.log('用沸水冲泡咖啡');
+}
+CoffeeWithHook.prototype.pourInCup = function(){
+	console.log('把咖啡倒进杯子');
+}
+CoffeeWithHook.prototype.addCondiments = function(){
+	console.log('加糖和牛奶');
+}
+CoffeeWithHook.prototype.customerWantsCondiments = function(){
+	return window.confirm('请问需要调料吗？');
+}
+//子类实例化
+var coffeeWithHook = new CoffeeWithHook();
+coffeeWithHook.init();
+```
