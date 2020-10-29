@@ -22,6 +22,7 @@ date: _2020/09/03_
 	- [命令模式](#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F)
 	- [组合模式](#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F)
 	- [模板方法模式](#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F)
+	- [享元模式](#%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F)
 
 <!-- /MarkdownTOC -->
 
@@ -494,3 +495,8 @@ CoffeeWithHook.prototype.customerWantsCondiments = function(){
 var coffeeWithHook = new CoffeeWithHook();
 coffeeWithHook.init();
 ```
+
+<a id="%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F"></a>
+### 享元模式
+
+`定义`：
