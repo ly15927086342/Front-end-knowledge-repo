@@ -3,43 +3,69 @@ date: _2020/04/17_
     
 # html相关总结    
     
-## 题目    
+<!-- TOC -->
+
+- [html相关总结](#html相关总结)
+  - [1. 事件冒泡/捕获](#1-事件冒泡捕获)
+  - [2. 阻止冒泡的方法](#2-阻止冒泡的方法)
+  - [3. 阻止默认事件](#3-阻止默认事件)
+  - [4. document.onload和document.ready区别](#4-documentonload和documentready区别)
+  - [5. URL查询参数](#5-url查询参数)
+  - [6. 节流](#6-节流)
+  - [7. 防抖](#7-防抖)
+  - [8. XSS攻击和CSRF攻击](#8-xss攻击和csrf攻击)
+  - [9. 浏览器渲染过程](#9-浏览器渲染过程)
+  - [10. html标签化，就是标签有语义，如](#10-html标签化就是标签有语义如)
+  - [11. defer和async](#11-defer和async)
+  - [12. 路由hash和history区别](#12-路由hash和history区别)
+  - [13. Web性能](#13-web性能)
+  - [14. `dns-prefetch`可以解决DNS解析延迟问题，使用方法如下：](#14-dns-prefetch可以解决dns解析延迟问题使用方法如下)
+  - [15. 关键渲染路径CRP（Critical rendering path）优化](#15-关键渲染路径crpcritical-rendering-path优化)
+  - [16. 输入网址，回车之后的一系列过程描述？](#16-输入网址回车之后的一系列过程描述)
+  - [17. postMessage](#17-postmessage)
+  - [18. XSS跨站点脚本攻击](#18-xss跨站点脚本攻击)
+  - [19. CSRF跨站点请求伪造](#19-csrf跨站点请求伪造)
+
+<!-- /TOC -->
     
-1. 事件冒泡/捕获    
+## 1. 事件冒泡/捕获    
 事件冒泡是由内到外    
 事件捕获是由外到内    
 W3C标准规定，domNode.addEventListener(event,fn,usecapture)//事件，回调，是否开启捕获，true为捕获，false为冒泡    
 IE标准规定，attachEvent    
 详见<a href="/css/事件捕获和冒泡.html" target="_blank">/css/事件捕获和冒泡.html</a>    
     
-2. 阻止冒泡的方法    
+## 2. 阻止冒泡的方法    
 W3C e.stopPropagation()//此方法为阻止事件传递，包括捕获和冒泡    
 IE e.CancelBubble() = true    
 也可以在回调中 return false    
     
-3. 阻止默认事件    
+## 3. 阻止默认事件    
 W3C e.preventDefault()    
 IE e.returnValue = false    
 也可以在回调中 return false    
     
-4. document.onload和document.ready区别    
+## 4. document.onload和document.ready区别    
 ready 是文档结构加载完（图片、静态资源没有）    
 load 是所有元素都加载完    
     
-5. URL查询参数    
+## 5. URL查询参数    
 ```javascript    
 let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');  
 window.location.search.substr(1).match(reg) //返回数组  
 ```  
-6. 节流：短时间避免多次调用同一函数，适用多次请求（降低事件的触发频率，例如计算滚动条位置、动画等）  
+
+## 6. 节流
+短时间避免多次调用同一函数，适用多次请求（降低事件的触发频率，例如计算滚动条位置、动画等）  
   
-7. 防抖：多次操作取最后一次之后定时执行，（适用撤回、输入字符串匹配） 
+## 7. 防抖
+多次操作取最后一次之后定时执行，（适用撤回、输入字符串匹配） 
   
-8. XSS攻击和CSRF攻击  
+## 8. XSS攻击和CSRF攻击  
 XSS(Cross Site Scripting，跨站脚本攻击）插入Script脚本攻击，预防：1.不用innerHTML，用innerText2.对innerHTML做过滤  
 CSRF(Cross-Site Request Forgery，跨站点请求伪造)预防：1.后台Http Referer验证 2.token验证、后台拦截器验证  
   
-9. 浏览器渲染过程  
+## 9. 浏览器渲染过程  
 解析HTML生成DOM树  
 解析CSS生成CSSOM树  
 合并生成渲染树  
@@ -53,7 +79,7 @@ CSRF(Cross-Site Request Forgery，跨站点请求伪造)预防：1.后台Http Re
 
 [https://blog.fundebug.com/2019/01/03/understand-browser-rendering/](https://blog.fundebug.com/2019/01/03/understand-browser-rendering/)
   
-10. html标签化，就是标签有语义，如  
+## 10. html标签化，就是标签有语义，如  
 ```html  
 <header></header><footer></footer><main></main>  
 ```  
@@ -62,7 +88,7 @@ CSRF(Cross-Site Request Forgery，跨站点请求伪造)预防：1.后台Http Re
 
 html语义化标签包括body, article, nav, aside, section, header, footer, hgroup, 还有 h1-h6 address等
   
-11. defer和async  
+## 11. defer和async  
 ```html  
 <script defer></script><!-- 异步加载，渲染完再执行，可保证执行顺序 -->  
 <script async></script><!-- 异步加载，下载完就执行，无法保证执行顺序 -->  
@@ -70,7 +96,7 @@ html语义化标签包括body, article, nav, aside, section, header, footer, hgr
 ```  
 ![](/static/imgs/defer_async.jpg)
   
-12. 路由hash和history区别  
+## 12. 路由hash和history区别  
 hash：#开头，利用window.onhashchange事件进行监听，不会刷新页面，通过location.hash获取  
 history：利用html5中pushState()和replaceState()方法，在back\forward\go基础上，点刷新会重新向后端发请求，浏览器连接修改会触发popstate事件  
 区别一：history比hash更美观  
@@ -86,9 +112,9 @@ history优势：
 hash在地址栏输入是不会重新发请求的，但是history的话是会重新发请求，那么如果vue-router选择history的话，如果在地址栏输入一个地址，后端如果没有处理该路由，就会返回404。因此history模式要求后端路由对前端所有路由做个重定向，然后前端路由对定向后的地址做一个组件进行匹配，统一展示页面。  
 如果是在页面内修改history（go\forward\back\pushstate\replacestate），是不会触发页面刷新的，因此只需要前端路由匹配到组件就可以根据路由进行渲染。`这一点要和地址栏输入做个区分`。
 
-13. [Web性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance)  
+## 13. [Web性能](https://developer.mozilla.org/zh-CN/docs/Web/Performance)  
 
-14. `dns-prefetch`可以解决DNS解析延迟问题，使用方法如下：
+## 14. `dns-prefetch`可以解决DNS解析延迟问题，使用方法如下：
 
 ```html
 <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
@@ -102,12 +128,12 @@ hash在地址栏输入是不会重新发请求的，但是history的话是会重
 ```  
 类似的rel属性还有`prefetch`、`prerender`、`preloading`，具体参考[https://css-tricks.com/prefetching-preloading-prebrowsing/](https://css-tricks.com/prefetching-preloading-prebrowsing/)
 
-16. 关键渲染路径CRP（Critical rendering path）优化  
+## 15. 关键渲染路径CRP（Critical rendering path）优化  
 （1）异步下载资源，减小请求数量，  
 （2）优化请求数量和请求的文件体积，  
 （3）区分资源的优先级来优化加载顺序，缩短关键路径长度。  
 
-15. 输入网址，回车之后的一系列过程描述？
+## 16. 输入网址，回车之后的一系列过程描述？
 
 参考[https://zhuanlan.zhihu.com/p/38240894](https://zhuanlan.zhihu.com/p/38240894)
 
@@ -124,7 +150,8 @@ js资源下载完立即执行（JSCore）；
 
 ![/static/imgs/网络传输流程.png](/static/imgs/网络传输流程.png)
 
-16. otherWindow.postMessage(message,targetOrigin)对页面的要求是，必须能够拿到窗口对象的引用，有以下四种：
+## 17. postMessage
+otherWindow.postMessage(message,targetOrigin)对页面的要求是，必须能够拿到窗口对象的引用，有以下四种：
 
 otherWindow是window对象的引用：
 
@@ -142,13 +169,13 @@ message(Object):接收的data对象，无需序列化
 receiveMessage(Function):回调函数，参数是event，包含origin、source等属性  
 getSource(Boolean):是否接收source（原窗口对象的引用）
 
-17. XSS跨站点脚本攻击
+## 18. XSS跨站点脚本攻击
 
 本质是用户无意中执行了攻击脚本
 
 解决方案：对于一些插入dom节点的文本做过滤、转义处理。例如appendChild()、document.write()
 
-18. CSRF跨站点请求伪造
+## 19. CSRF跨站点请求伪造
 
 [http://adoyle.me/blog/how-csrf-works.html](http://adoyle.me/blog/how-csrf-works.html)
 

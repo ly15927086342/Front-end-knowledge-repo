@@ -3,29 +3,81 @@ date: _2020/04/17_
   
 # js相关总结  
   
-## 题目  
+<!-- TOC -->
+
+- [js相关总结](#js相关总结)
+  - [1. typeof、instanceof、isPropertyof区别](#1-typeofinstanceofispropertyof区别)
+  - [2. === 表示恒等，不会类型转换](#2--表示恒等不会类型转换)
+  - [3. 查询自有属性的方法](#3-查询自有属性的方法)
+  - [4. 数据类型包括：基本类型和引用类型](#4-数据类型包括基本类型和引用类型)
+  - [5. 基本类型和引用类型区别](#5-基本类型和引用类型区别)
+  - [6. call()、apply()、bind()区别](#6-callapplybind区别)
+  - [7. apply妙用](#7-apply妙用)
+  - [8. this指向](#8-this指向)
+  - [9. 原生对象和宿主对象](#9-原生对象和宿主对象)
+  - [10. 深浅拷贝](#10-深浅拷贝)
+  - [11. IIFE(立即执行函数表达式)](#11-iife立即执行函数表达式)
+  - [12. ES6有六种变量声明的方法：var、function、 let、const、 class、import](#12-es6有六种变量声明的方法varfunction-letconst-classimport)
+  - [13. 三元表达式](#13-三元表达式)
+  - [14. arguments](#14-arguments)
+  - [15. 严格模式"use strict"优劣](#15-严格模式use-strict优劣)
+  - [16. 闭包：读取函数内部变量的函数](#16-闭包读取函数内部变量的函数)
+  - [17. async/await 和 promise](#17-asyncawait-和-promise)
+  - [18. Object.defineProperty(obj,key,{})，参数有enumerable\configurable\writable\set\get](#18-objectdefinepropertyobjkey参数有enumerable\configurable\writable\set\get)
+  - [19. 数组去重的方法](#19-数组去重的方法)
+  - [20. Node.js特点](#20-nodejs特点)
+  - [21. Proxy对象代理，有13种属性，get\set\defineProperty\has\ownkeys\apply\construct...可以触发代理](#21-proxy对象代理有13种属性get\set\defineproperty\has\ownkeys\apply\construct可以触发代理)
+  - [22. Reflect 与Proxy对象的方法一一对应，提供进一步操作空间](#22-reflect-与proxy对象的方法一一对应提供进一步操作空间)
+  - [23. 观察者模式实现](#23-观察者模式实现)
+  - [24. 判断变量是数组](#24-判断变量是数组)
+  - [25. String()和new String() Number()和new Number()区别](#25-string和new-string-number和new-number区别)
+  - [26. toString()和valueOf()区别](#26-tostring和valueof区别)
+  - [27. class](#27-class)
+  - [28. 模块加载](#28-模块加载)
+  - [29. ES6模块和CommonJS模块差异](#29-es6模块和commonjs模块差异)
+  - [30. 排序方法（十大经典排序）](#30-排序方法十大经典排序)
+  - [31. 对象属性不可修改（优先级如下）](#31-对象属性不可修改优先级如下)
+  - [32. Event Loop 事件循环](#32-event-loop-事件循环)
+  - [33. Proxy比defineProperty优劣：](#33-proxy比defineproperty优劣)
+  - [34. ES6引入的class和原有的JavaScript原型继承有什么区别呢？](#34-es6引入的class和原有的javascript原型继承有什么区别呢)
+  - [~~35. 标记-清除算法~~](#35-标记-清除算法)
+  - [36. performance](#36-performance)
+  - [37. ASCII码和整数互转](#37-ascii码和整数互转)
+  - [38. 十进制转其他进制](#38-十进制转其他进制)
+  - [39. 二进制、八进制和十六进制表达](#39-二进制八进制和十六进制表达)
+  - [40. 判断两个小数相等](#40-判断两个小数相等)
+  - [41. 大数运算，可以将数字转为字符串再处理](#41-大数运算可以将数字转为字符串再处理)
+  - [42. setTimeout(callback,time,...arg) 可以把callback的参数写在...arg处](#42-settimeoutcallbacktimearg-可以把callback的参数写在arg处)
+  - [43. Promise](#43-promise)
+  - [44. 如何实现async/await？见/js原理/重写async函数.js](#44-如何实现asyncawait见js原理重写async函数js)
+  - [45. 箭头函数和普通函数的区别？](#45-箭头函数和普通函数的区别)
+  - [46. Array的indexOf和Set的has时间复杂度分别是多少？](#46-array的indexof和set的has时间复杂度分别是多少)
+  - [47. LHS和RHS](#47-lhs和rhs)
+  - [48. ReferenceError和TypeError](#48-referenceerror和typeerror)
+
+<!-- /TOC -->
   
-1. typeof、instanceof、isPropertyof区别  
+## 1. typeof、instanceof、isPropertyof区别  
 详见[/js原理/typeof_instanceof_isprototypeof.js](/js原理/typeof_instanceof_isprototypeof.js)  
   
-2. === 表示恒等，不会类型转换  
+## 2. === 表示恒等，不会类型转换  
 由于js是弱语言，表达式运算符会导致类型转换，如  
 true == 1 == '1'  
 true !== 1  
   
-3. 查询自有属性的方法  
+## 3. 查询自有属性的方法  
 详见<a href="/js原理/原型链的属性遍历.js">/js原理/原型链的属性遍历.js</a>  
   
-4. 数据类型包括：基本类型和引用类型  
+## 4. 数据类型包括：基本类型和引用类型  
 基本类型包括：null、undefined、boolean、string、symbol、number、object  
 引用类型包括：Object、Function、Date、RegExp、Array等  
   
-5. 基本类型和引用类型区别  
+## 5. 基本类型和引用类型区别  
 基本类型-》栈（stack）  
 引用类型-》堆（heap）  
 一、内存分配方式；二、复制；三、传参  
   
-6. call()、apply()、bind()区别  
+## 6. call()、apply()、bind()区别  
 执行：call()和apply()是立即执行，而bind()是返回一个函数  
 参数：  
 call(this[,arg1,...,argn])  
@@ -44,26 +96,26 @@ var list3 = leadingThirtysevenList(1, 2, 3);
 // [37, 1, 2, 3]
 ```
   
-7. apply妙用  
+## 7. apply妙用  
 Math.max.apply(null,Attay)  
 等价于Math.max(...Array)  
   
-8. this指向  
+## 8. this指向  
 new调用 > 显示调用 > 隐式调用 > 默认调用  
 详见<a href="/js原理/this理解.js">/js原理/this理解.js</a>  
 `箭头函数的this指向`，是在定义时决定的，不是执行时决定的
   
-9. 原生对象和宿主对象  
+## 9. 原生对象和宿主对象  
 原生对象：引用类型=》Array\Date\RegExp  
 宿主对象：宿主环境规定的对象，如Document\Location\Navigator  
   
-10. 深浅拷贝  
+## 10. 深浅拷贝  
 详见<a href="/js原理/js对象的深浅拷贝(克隆).js">/js原理/js对象的深浅拷贝(克隆).js</a>  
   
-11. IIFE(立即执行函数表达式)  
+## 11. IIFE(立即执行函数表达式)  
 写法(function(...arg){})(arg1,..,argn)  
   
-12. ES6有六种变量声明的方法：var、function、 let、const、 class、import  
+## 12. ES6有六种变量声明的方法：var、function、 let、const、 class、import  
 其中，var和function声明的全局变量，会作为顶层对象（window）的属性，而let、const和import声明的全局变量，不属于顶层对象的属性。也就是说，从ES6开始，全局变量将逐步与顶层对象的属性脱钩。
 
 let、const和var的区别：  
@@ -72,21 +124,21 @@ let、const和var的区别：
 （3）var的作用域是全局作用域和函数作用域，而let和const是块级作用域  
 （4）块级作用域中let、const声明的变量，会出现“暂时性死区”，如果提前使用声明的变量，Cannot access 'a' before initialization，外层定义过该变量也会失效。  
   
-13. 三元表达式  
+## 13. 三元表达式  
 表达式？A:B  
   
-14. arguments  
+## 14. arguments  
 函数内部的实参列表，类数组对象，用下标访问参数  
   
-15. 严格模式"use strict"优劣  
+## 15. 严格模式"use strict"优劣  
 优：1.减少不合理 2.更安全 3.更快  
 劣：1.运行结果不同 2.不能运行  
   
-16. 闭包：读取函数内部变量的函数  
+## 16. 闭包：读取函数内部变量的函数  
 作用：1.公有变量（函数累加器） 2.缓存 3. 属性私有化 4.模块化开发  
 缺点：内存泄漏  
   
-17. async/await 和 promise  
+## 17. async/await 和 promise  
 await 后本质是一个promise函数，不管是同步还是异步函数，都会先跳到async函数外面先把同步代码执行完后，再执行剩余代码  
 
 `理解这段代码`
@@ -167,46 +219,51 @@ then:3
 （4）中间值（promise需要链式调用then）  
 （5）错误栈（promise无法定位错误位置）  
   
-18. Object.defineProperty(obj,key,{})，参数有enumerable\configurable\writable\set\get  
+## 18. Object.defineProperty(obj,key,{})，参数有enumerable\configurable\writable\set\get  
   
-19. 数组去重的方法  
+## 19. 数组去重的方法  
 法一：Array.from(new Set(arr))或者[...(new Set(arr))]  
 法二：obj[key] = 1;res.push(key)  
   
-20. Node.js特点 1.单线程（主线程） 2.异步/非阻塞I/O 3.事件驱动和回调函数 4.child-process子进程和H5的WebWorker类似  
+## 20. Node.js特点
+
+1. 单线程（主线程） 
+2. 异步/非阻塞I/O 
+3. 事件驱动和回调函数 
+4. child-process子进程和H5的WebWorker类似  
   
-21. Proxy对象代理，有13种属性，get\set\defineProperty\has\ownkeys\apply\construct...可以触发代理  
+## 21. Proxy对象代理，有13种属性，get\set\defineProperty\has\ownkeys\apply\construct...可以触发代理  
 
 `Proxy只能监听一层，如果对象属性还是对象，则需要继续代理`
   
-22. Reflect 与Proxy对象的方法一一对应，提供进一步操作空间  
+## 22. Reflect 与Proxy对象的方法一一对应，提供进一步操作空间  
 把属于内部属性的方法从Object对象提取出，set如果不传receiver，不会触发defineProperty拦截  
   
-23. 观察者模式实现  
+## 23. 观察者模式实现  
 详见<a href="/js原理/观察者模式.js">/js原理/观察者模式.js</a>  
   
-24. 判断变量是数组  
+## 24. 判断变量是数组  
 1.arr instanceof Array  
 2.Array.prototype.isPrototypeOf(arr)  
 3.Array.isArray(arr)  
 4.arr.constructor === Array  
 5.Object.prototype.toString.call(arr) === '[object Array]'
   
-25. String()和new String() Number()和new Number()区别  
+## 25. String()和new String() Number()和new Number()区别  
 前者是方法，后者是实例化  
   
-26. toString()和valueOf()区别  
+## 26. toString()和valueOf()区别  
 
 |method|Number|String|Boolean|Date|Array|Object|function|  
 |:--|:--|:--|:--|:--|:--|:--|:--|  
 |toString|"123"|一致|"false"|打印日期|"1,2,3"|[object Object]|源代码字符串|  
 |valueOf|123|一致|false|时间戳|[1,2,3]|{...}|函数本身|  
   
-27. class  
+## 27. class  
 ES6 class中的方法不可枚举 Object.keys(ClassA)为[]  
 ES5 可枚举  
   
-28. 模块加载  
+## 28. 模块加载  
 CommonJS 服务器  
 AMD 浏览器  
 被ES6模块取代，编译时确定依赖关系  
@@ -219,7 +276,7 @@ ES6模块的好处
 4.局部引用  
 CommonJS require的变量是缓存，不能修改，而ES6模块变量值是动态变化的，但建议不要改写  
   
-29. ES6模块和CommonJS模块差异  
+## 29. ES6模块和CommonJS模块差异  
 1.CommonJS输出值拷贝，ES6输出值引用  
 2.CommonJS运行时加载，ES6编译时加载  
 
@@ -273,14 +330,14 @@ define(function(require, exports, module) {
 });
 ```
 
-30. 排序方法（十大经典排序）  
+## 30. 排序方法（十大经典排序）  
 冒泡、选择、插入、希尔、归并、快排、堆、计数、桶、基数  
 详见<a href="/数据结构与算法/算法/排序">/数据结构与算法/算法/排序</a>  
   
-31. 对象属性不可修改（优先级如下）  
+## 31. 对象属性不可修改（优先级如下）  
 Object.freeze->Object.seal->preventExtensions->writable\configurable  
   
-32. Event Loop 事件循环  
+## 32. Event Loop 事件循环  
 <a href="https://juejin.im/post/5c947bca5188257de704121d">参考这篇博文，讲的非常清楚</a>  
 ![/static/imgs/event_loop.svg](/static/imgs/event_loop.svg)
 
@@ -342,7 +399,7 @@ inner-setTimeout---0
 
 实际上队列还分`事件队列`和`消息队列`，前者总是优于后者执行，例如addEventListener('click',callback)会优先promise执行回调，前提是同一层循环内。详见[https://juejin.im/post/6844903556084924423](https://juejin.im/post/6844903556084924423)、[https://github.com/dwqs/blog/issues/61](https://github.com/dwqs/blog/issues/61)
 
-33. Proxy比defineProperty优劣：  
+## 33. Proxy比defineProperty优劣：  
 （1）Proxy可以直接监听对象而不是属性  
 （2）Proxy可以监听数组变化，会触发方法名和length的变化  
 （3）Proxy有13种拦截方法  
@@ -350,14 +407,14 @@ inner-setTimeout---0
 缺点：  
 （1）Proxy兼容性不好，不兼容IE浏览器  
 
-34. ES6引入的class和原有的JavaScript原型继承有什么区别呢？  
+## 34. ES6引入的class和原有的JavaScript原型继承有什么区别呢？  
 实际上它们没有任何区别，class的作用就是让JavaScript引擎去实现原来需要我们自己编写的原型链代码。简而言之，用class的好处就是极大地简化了原型链代码。
 
-~~35. 标记-清除算法~~
+## ~~35. 标记-清除算法~~
 
 [移动到计算机原理相关](./计算机原理相关.md)
 
-36. performance  
+## 36. performance  
 [资源加载的各个阶段耗时计算](https://developer.mozilla.org/zh-CN/docs/Web/API/Resource_Timing_API/Using_the_Resource_Timing_API)
 
 ![/static/imgs/ResourceTiming.jpg](/static/imgs/ResourceTiming.jpg)
@@ -382,13 +439,13 @@ inner-setTimeout---0
 
 参考标准[High Resolution Time Level 2](https://www.w3.org/TR/hr-time/)
 
-37. ASCII码和整数互转  
+## 37. ASCII码和整数互转  
 
 		let num = 65
 		let asc = String.fromCharCode(num) // asc = 'A'
 		let asc_num = asc.charCodeAt() // asc_num = 65
 
-38. 十进制转其他进制
+## 38. 十进制转其他进制
 
 		let a = 10
 		a.toString(2) // '1010'
@@ -408,23 +465,23 @@ inner-setTimeout---0
 		}
 		everyToTen(2,'1010') // 10
 
-39. 二进制、八进制和十六进制表达
+## 39. 二进制、八进制和十六进制表达
 
 二进制：0b，例如0b110
 八进制：0o，例如0o236
 十六进制：0x，例如0x15e
 
-40. 判断两个小数相等
+## 40. 判断两个小数相等
 
 		Math.abs(a-b) < Number.EPSILON
 
-41. 大数运算，可以将数字转为字符串再处理
+## 41. 大数运算，可以将数字转为字符串再处理
 
 整数的安全范围是[-2^53 + 1, 2^53 - 1]，即[Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER]
 
-42. setTimeout(callback,time,...arg) 可以把callback的参数写在...arg处
+## 42. setTimeout(callback,time,...arg) 可以把callback的参数写在...arg处
 
-43. Promise
+## 43. Promise
 
 ```javascript
 new Promise((resolve,reject)=>{
@@ -523,13 +580,13 @@ all和allSettled会resolve([])
 |race|有一个promise改变状态|值|pending|
 |any|有一个promise改为fulfilled|值|pending|
 
-44. 如何实现async/await？见[/js原理/重写async函数.js](/js原理/重写async函数.js)  
+## 44. 如何实现async/await？见[/js原理/重写async函数.js](/js原理/重写async函数.js)  
 
 官方的_asyncToGenerator函数如图：
 ![/static/imgs/asyncToGenerator.png](/static/imgs/asyncToGenerator.png)  
 参考文章[https://hackernoon.com/async-await-generators-promises-51f1a6ceede2](https://hackernoon.com/async-await-generators-promises-51f1a6ceede2)
 
-45. 箭头函数和普通函数的区别？
+## 45. 箭头函数和普通函数的区别？
 
 （1）语法更简洁  
 （2）箭头函数不会创建this，this指向定义上下文的上一层  
@@ -539,7 +596,7 @@ all和allSettled会resolve([])
 （6）箭头函数没有原型prototype，但是有__proto__，指向Function.prototype  
 （7）箭头函数不能用作Generator函数，但是可以用作async函数  
 
-46. Array的indexOf和Set的has时间复杂度分别是多少？
+## 46. Array的indexOf和Set的has时间复杂度分别是多少？
 
 indexOf: O(N)  
 has: O(1)  
@@ -548,7 +605,7 @@ Set的add也比Array的push方法效率高
 
 [重写Set和Map](https://juejin.im/post/6844903589920374792)
 
-47. LHS和RHS
+## 47. LHS和RHS
 
 LHS(Left Hand Side)：查找的目的是对变量进行赋值
 
@@ -568,7 +625,7 @@ var c = foo(2);
 // foo(2);...a;a...;...b;
 ```
 
-48. ReferenceError和TypeError
+## 48. ReferenceError和TypeError
 
 ReferenceError:代表当一个不存在的变量被引用时发生的错误。
 
